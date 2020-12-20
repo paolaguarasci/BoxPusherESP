@@ -6,6 +6,8 @@ public class GameManager : MonoBehaviour {
     private bool m_ReadyForInput;
     public Player m_Player;
 
+    public LevelBuilder m_LevelBuilder;
+
     void Update () {
         Vector2 moveInput = new Vector2 (Input.GetAxisRaw ("Horizontal"), Input.GetAxisRaw ("Vertical"));
         moveInput.Normalize ();
@@ -18,5 +20,10 @@ public class GameManager : MonoBehaviour {
         } else {
             m_ReadyForInput = true;
         }
+    }
+
+    private void Start () {
+        m_LevelBuilder.Build ();
+        m_Player = FindObjectOfType<Player>();
     }
 }

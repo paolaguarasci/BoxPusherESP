@@ -25,7 +25,7 @@ public class Levels : MonoBehaviour {
     public List<Level> m_Levels;
 
     private void Awake () {
-        TextAsset textAsset = Resources.Load<TextAsset>(filename) as TextAsset;
+        TextAsset textAsset = Resources.Load<TextAsset> (filename) as TextAsset;
         if (!textAsset) {
             Debug.Log (filename + ".txt non esiste!");
             return;
