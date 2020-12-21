@@ -12,7 +12,7 @@ public class GameManager : MonoBehaviour {
     public LevelBuilder m_LevelBuilder;
 
     private void Start () {
-        m_NextButton.SetActive (false);
+        // m_NextButton.SetActive (false);
         ResetScene ();
     }
     void Update () {
@@ -22,7 +22,7 @@ public class GameManager : MonoBehaviour {
             if (m_ReadyForInput) {
                 m_ReadyForInput = false;
                 m_Player.Move (moveInput);
-                m_NextButton.SetActive (IsLevelComplete ());
+                // m_NextButton.SetActive (IsLevelComplete ());
             }
         } else {
             m_ReadyForInput = true;
@@ -30,7 +30,7 @@ public class GameManager : MonoBehaviour {
     }
 
     public void NextLevel () {
-        m_NextButton.SetActive (false);
+        // m_NextButton.SetActive (false);
         m_LevelBuilder.NextLevel ();
         StartCoroutine (ResetSceneASync ());
     }
