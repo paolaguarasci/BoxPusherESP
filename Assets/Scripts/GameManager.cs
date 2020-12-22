@@ -22,7 +22,7 @@ public class GameManager : MonoBehaviour {
             if (m_ReadyForInput) {
                 m_ReadyForInput = false;
                 m_Player.Move (moveInput);
-                // m_NextButton.SetActive (IsLevelComplete ());
+                m_NextButton.SetActive (IsLevelComplete ());
             }
         } else {
             m_ReadyForInput = true;
@@ -30,7 +30,7 @@ public class GameManager : MonoBehaviour {
     }
 
     public void NextLevel () {
-        // m_NextButton.SetActive (false);
+        m_NextButton.SetActive (false);
         m_LevelBuilder.NextLevel ();
         StartCoroutine (ResetSceneASync ());
     }
@@ -50,17 +50,17 @@ public class GameManager : MonoBehaviour {
             Debug.Log ("Unload ok");
             Resources.UnloadUnusedAssets ();
 
-            AsyncOperation asyncLoad = SceneManager.LoadSceneAsync ("Level", LoadSceneMode.Additive);
-            while (!asyncLoad.isDone) {
-                yield return null;
-                Debug.Log ("Loading...");
-            }
-            Debug.Log ("Scena caricata");
-            SceneManager.SetActiveScene (SceneManager.GetSceneByName ("Level"));
-            m_LevelBuilder.Build ();
-            m_Player = FindObjectOfType<Player> ();
-            Debug.Log ("Livello caricato");
         }
+        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync ("Level", LoadSceneMode.Additive);
+        while (!asyncLoad.isDone) {
+            yield return null;
+            Debug.Log ("Loading...");
+        }
+        Debug.Log ("Scena caricata");
+        SceneManager.SetActiveScene (SceneManager.GetSceneByName ("Level"));
+        m_LevelBuilder.Build ();
+        m_Player = FindObjectOfType<Player> ();
+        Debug.Log ("Livello caricato");
     }
     bool IsLevelComplete () {
         Box[] boxes = FindObjectsOfType<Box> ();
