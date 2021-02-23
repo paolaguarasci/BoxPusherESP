@@ -14,7 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   confsToSerialize:
   - {fileID: 11400000, guid: 1dae9d577a228f04bb358ce66d72adec, type: 2}
+  - {fileID: 11400000, guid: 0d511546c570f02408f35a4f014bf67b, type: 2}
+  - {fileID: 11400000, guid: eb9103fb75265674abc9b5f15cf67ea6, type: 2}
   configuredGameObject:
   - Random
+  - Griglia
   configurationsNames:
   - readDir
+  - qwdqwdqw
+  - readGriglia

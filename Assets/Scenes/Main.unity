@@ -616,6 +616,7 @@ GameObject:
   m_Component:
   - component: {fileID: 733930962}
   - component: {fileID: 733930961}
+  - component: {fileID: 733930963}
   m_Layer: 0
   m_Name: Griglia
   m_TagString: Untagged
@@ -649,6 +650,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &733930963
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 733930960}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1560303995, guid: b35bdd8e9f8e75b45aba5c946c47f528, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gOConfigurations: []
+  localNames: []
+  goName: Griglia
 --- !u!1 &1510211793
 GameObject:
   m_ObjectHideFlags: 0
@@ -919,6 +935,7 @@ MonoBehaviour:
     m_Rows: []
     cprova: 
     levelID: 0
+  g: {fileID: 0}
 --- !u!114 &1694413812
 MonoBehaviour:
   m_ObjectHideFlags: 0
