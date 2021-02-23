@@ -43,7 +43,7 @@ public class LevelBuilder : MonoBehaviour {
         int startx = -m_Level.Width / 2;
         int x = startx;
         int y = -m_Level.Height / 2;
-
+        g.azzeraGriglia ();
         foreach (var row in m_Level.m_Rows) {
             foreach (var ch in row) {
                 GameObject prefab = GetPrefab (ch);

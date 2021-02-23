@@ -25,8 +25,8 @@ public class GameManager : MonoBehaviour {
     }
     void Update () {
         // Vector2 moveInput = new Vector2 (Input.GetAxisRaw ("Horizontal"), Input.GetAxisRaw ("Vertical"));
-        float xf = (X - 10) / 10f;
-        float yf = (Y - 10) / 10f;
+        float xf = X / 1.0f;
+        float yf = Y / 1.0f;
 
         Vector2 moveInput = new Vector2 (xf, yf);
         moveInput.Normalize ();
