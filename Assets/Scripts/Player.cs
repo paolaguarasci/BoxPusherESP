@@ -3,6 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Player : MonoBehaviour {
+
+    public Griglia g;
+    public int x;
+    public int y;
+
+    public void Start () {
+        x = (int) transform.position.x;
+        y = (int) transform.position.y;
+        g = FindObjectOfType<Griglia> ();
+    }
+
     public bool Move (Vector2 direction) {
 
         // Impedisce al player di andare in diagonale
@@ -20,6 +31,10 @@ public class Player : MonoBehaviour {
             return false;
         } else {
             transform.Translate (direction);
+            x = (int) transform.position.x;
+            y = (int) transform.position.y;
+            g.muoviPlayer (x, y);
+            Debug.Log ("[PLAYER] pos x " + x + " y " + y);
             return true;
         }
 

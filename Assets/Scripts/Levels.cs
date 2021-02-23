@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,7 +6,9 @@ using UnityEngine;
 [System.Serializable]
 public class Level {
     public List<string> m_Rows = new List<string> ();
-
+    public List<Cella> celle = new List<Cella> ();
+    public List<int> cprova = new List<int> ();
+    public int levelID = -1;
     // L'altezza del livello e' il numero di righe
     public int Height { get { return m_Rows.Count; } }
     public int Width {
@@ -18,6 +21,10 @@ public class Level {
             return maxLength;
         }
     }
+    int[, ] array2D = new int[, ] { { 1, 2 }, { 3, 4 }, { 5, 6 }, { 7, 8 } };
+
+
+
 }
 
 public class Levels : MonoBehaviour {

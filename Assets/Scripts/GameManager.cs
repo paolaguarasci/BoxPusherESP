@@ -6,25 +6,42 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour {
     private bool m_ReadyForInput;
     public Player m_Player;
-
+    public Griglia g;
+    public RandomDirection randomDirection;
     public GameObject m_NextButton;
 
     public LevelBuilder m_LevelBuilder;
+    private int _x;
+    public int X { get { return _x; } set { _x = value; } }
 
-    private void Start () {
+    private int _y;
+    public int Y { get { return _y; } set { _y = value; } }
+
+    void Start () {
         // m_NextButton.SetActive (false);
         ResetScene ();
+        RandomDirection rd = FindObjectOfType<RandomDirection> ();
+        g = FindObjectOfType<Griglia> ();
     }
     void Update () {
-        Vector2 moveInput = new Vector2 (Input.GetAxisRaw ("Horizontal"), Input.GetAxisRaw ("Vertical"));
+        // Vector2 moveInput = new Vector2 (Input.GetAxisRaw ("Horizontal"), Input.GetAxisRaw ("Vertical"));
+        float xf = (X - 10) / 10f;
+        float yf = (Y - 10) / 10f;
+
+        Vector2 moveInput = new Vector2 (xf, yf);
         moveInput.Normalize ();
+        Debug.Log ("[GAMEMANAGER] " + moveInput);
         if (moveInput.sqrMagnitude > 0.5) {
+            Debug.Log ("[GAMEMANAGER] SQR MAG > 0.5");
             if (m_ReadyForInput) {
                 m_ReadyForInput = false;
                 m_Player.Move (moveInput);
+                Cella player = g.getPlayerPosition ();
+                Debug.Log ("[GAMEMANAGER] player x " + player.x + " y " + player.y);
                 m_NextButton.SetActive (IsLevelComplete ());
             }
         } else {
+            Debug.Log ("[GAMEMANAGER] SQR MAG < 0.5");
             m_ReadyForInput = true;
         }
     }
