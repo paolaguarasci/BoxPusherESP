@@ -94,12 +94,21 @@ nextMove(D) | noNextMove(D) :- direction(D, _, _).
 
 %% Non posso andare sui muri
 :- nextMove(D), direction(D, Dx, Dy), player(X, Y), muro(A, B), A=X+Dx, B=Y+Dy.
-%% Non posso andare in piu di una direzione per volta
+%% Non posso andare in piu' di una direzione per volta
 :- #count {D: nextMove(D)} > 1.
 %% Preferisco muovermi
 :~ nextMove(D), D=0. [1@1]
 
+boxProssimi(X,Y) :- player(A, B), box(X,Y), X=A+1. 
+boxProssimi(X,Y) :- player(A, B), box(X,Y), X=A-1. 
+boxProssimi(X,Y) :- player(A, B), box(X,Y), Y=A+1. 
+boxProssimi(X,Y) :- player(A, B), box(X,Y), Y=A-1. 
 
 
-setOnActuator(scrivoDir(gameManager(gameManager(x(X))))) :- direzioneLetta(D), direction(D,X,Y).
-setOnActuator(scrivoDir(gameManager(gameManager(y(Y))))) :- direzioneLetta(D), direction(D,X,Y).
+
+
+%% Avviciniamoci alla prima scatola disponibile 
+
+
+% setOnActuator(scrivoDir(gameManager(gameManager(x(X))))) :- nextMove(D), direction(D,X,Y).
+% setOnActuator(scrivoDir(gameManager(gameManager(y(Y))))) :- nextMove(D), direction(D,X,Y).

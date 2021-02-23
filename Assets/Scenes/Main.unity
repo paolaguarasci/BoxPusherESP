@@ -662,8 +662,12 @@ MonoBehaviour:
   m_Script: {fileID: 1560303995, guid: b35bdd8e9f8e75b45aba5c946c47f528, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gOConfigurations: []
-  localNames: []
+  gOConfigurations:
+  - {fileID: 0}
+  - {fileID: 11400000, guid: eb9103fb75265674abc9b5f15cf67ea6, type: 2}
+  localNames:
+  - qwdqwdqw
+  - readGriglia
   goName: Griglia
 --- !u!1 &1510211793
 GameObject:
@@ -1093,9 +1097,10 @@ MonoBehaviour:
   m_Script: {fileID: 357554835, guid: b35bdd8e9f8e75b45aba5c946c47f528, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  debug: 1
+  debug: 0
   sensorsConfigurations:
   - {fileID: 11400000, guid: 1dae9d577a228f04bb358ce66d72adec, type: 2}
+  - {fileID: 11400000, guid: eb9103fb75265674abc9b5f15cf67ea6, type: 2}
   actuatorsConfigurations:
   - {fileID: 11400000, guid: 0377ffdbdee91e7499293789a7e0d253, type: 2}
   ASPFilePath: .\Assets\Resources\Brain.asp
