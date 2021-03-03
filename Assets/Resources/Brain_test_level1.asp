@@ -70,6 +70,15 @@ direzioneLetta(D) :- readDir(random(randomDirection(direction(D)))).
 
 celle(A, B, C) :- readGriglia(griglia(griglia(mappa(I,cella(x(A)))))), readGriglia(griglia(griglia(mappa(I,cella(y(B)))))), readGriglia(griglia(griglia(mappa(I,cella(val(C)))))).
 
+nodo(I) :- readGriglia(griglia(griglia(mappa(I,cella(x(A)))))).
+arc(A, B) :- nodo(A), nodo(B), readGriglia(griglia(griglia(mappa(A,cella(x(X)))))), readGriglia(griglia(griglia(mappa(A,cella(y(Y)))))), readGriglia(griglia(griglia(mappa(B,cella(x(X1)))))), readGriglia(griglia(griglia(mappa(B,cella(y(Y1)))))), A != B, Y = Y1, X1 = X + 1.   
+arc(A, B) :- nodo(A), nodo(B), readGriglia(griglia(griglia(mappa(A,cella(x(X)))))), readGriglia(griglia(griglia(mappa(A,cella(y(Y)))))), readGriglia(griglia(griglia(mappa(B,cella(x(X1)))))), readGriglia(griglia(griglia(mappa(B,cella(y(Y1)))))), A != B, Y1 = Y + 1, X = X1.   
+arc(A, B) :- nodo(A), nodo(B), readGriglia(griglia(griglia(mappa(A,cella(x(X)))))), readGriglia(griglia(griglia(mappa(A,cella(y(Y)))))), readGriglia(griglia(griglia(mappa(B,cella(x(X1)))))), readGriglia(griglia(griglia(mappa(B,cella(y(Y1)))))), A != B, Y = Y1, X1 = X - 1.   
+arc(A, B) :- nodo(A), nodo(B), readGriglia(griglia(griglia(mappa(A,cella(x(X)))))), readGriglia(griglia(griglia(mappa(A,cella(y(Y)))))), readGriglia(griglia(griglia(mappa(B,cella(x(X1)))))), readGriglia(griglia(griglia(mappa(B,cella(y(Y1)))))), A != B, Y1 = Y - 1, X = X1.   
+quantiArchi(X) :- #count{A,B: arc(A,B)} = X.
+
+arc(A,B) :- arc(B,A).
+
 player(X, Y) :- celle(X, Y, C), C = 5.
 target(X, Y) :- celle(X, Y, C), C = 3.
 box(X, Y) :- celle(X, Y, C), C = 4.

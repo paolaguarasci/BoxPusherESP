@@ -4,17 +4,18 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour {
-    private bool m_ReadyForInput;
+    public bool m_ReadyForInput;
     public Player m_Player;
     public Griglia g;
     public RandomDirection randomDirection;
     public GameObject m_NextButton;
+    public Vector2 moveInput;
 
     public LevelBuilder m_LevelBuilder;
-    private int _x;
+    private int _x = 0;
     public int X { get { return _x; } set { _x = value; } }
 
-    private int _y;
+    private int _y = 0;
     public int Y { get { return _y; } set { _y = value; } }
 
     void Start () {
@@ -25,12 +26,11 @@ public class GameManager : MonoBehaviour {
     }
     void Update () {
         // Vector2 moveInput = new Vector2 (Input.GetAxisRaw ("Horizontal"), Input.GetAxisRaw ("Vertical"));
-        float xf = X / 1.0f;
-        float yf = Y / 1.0f;
-
+        float xf = (X - 10) / 1.0f;
+        float yf = (Y - 10) / 1.0f;
         Vector2 moveInput = new Vector2 (xf, yf);
         moveInput.Normalize ();
-        Debug.Log ("[GAMEMANAGER] " + moveInput);
+        Debug.Log ("[GAMEMANAGER] MOVE INPUT " + moveInput + " X " + X + " Y " + Y);
         if (moveInput.sqrMagnitude > 0.5) {
             Debug.Log ("[GAMEMANAGER] SQR MAG > 0.5");
             if (m_ReadyForInput) {

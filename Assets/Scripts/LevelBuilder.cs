@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 [System.Serializable]
@@ -40,17 +41,18 @@ public class LevelBuilder : MonoBehaviour {
 
     public void Build () {
         m_Level = GetComponent<Levels> ().m_Levels[m_CurrentLevel];
-        int startx = -m_Level.Width / 2;
+        int startx = (-m_Level.Width / 2) + 10;
         int x = startx;
-        int y = -m_Level.Height / 2;
+        int y = (-m_Level.Height / 2) + 10;
         g.azzeraGriglia ();
-        foreach (var row in m_Level.m_Rows) {
+        // Reverse serve perche' altrimenti il livello e' specchiato 
+        foreach (string row1 in Enumerable.Reverse (m_Level.m_Rows)) {
+            var row = row1.Trim ();
             foreach (var ch in row) {
+                BuildCell (x, y, ch);
                 GameObject prefab = GetPrefab (ch);
                 if (prefab) {
                     Instantiate (prefab, new Vector3 (x, y, 0), Quaternion.identity);
-                    BuildCell (x, y, ch);
-                    Debug.Log ("[LEVELBUILDER] prefab x " + x + " y " + y);
                 }
                 x++;
             }

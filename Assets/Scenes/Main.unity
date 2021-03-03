@@ -472,7 +472,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalPosition: {x: 10, y: 10, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -583,11 +583,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68a2c25b9f429464698e786adaeb35cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_ReadyForInput: 0
   m_Player: {fileID: 5173458839406768450, guid: 2ee3222728e046f4eb98cf9539e49534,
     type: 3}
   g: {fileID: 0}
   randomDirection: {fileID: 0}
   m_NextButton: {fileID: 380701019}
+  moveInput: {x: 0, y: 0}
   m_LevelBuilder: {fileID: 1694413811}
 --- !u!114 &691242848
 MonoBehaviour:
@@ -636,6 +638,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: acb3ea2787035864882bc98d802457f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  direzione: -1
 --- !u!4 &733930962
 Transform:
   m_ObjectHideFlags: 0
@@ -1093,7 +1096,7 @@ MonoBehaviour:
   m_Script: {fileID: 357554835, guid: b35bdd8e9f8e75b45aba5c946c47f528, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  debug: 0
+  debug: 1
   sensorsConfigurations:
   - {fileID: 11400000, guid: 1dae9d577a228f04bb358ce66d72adec, type: 2}
   - {fileID: 11400000, guid: eb9103fb75265674abc9b5f15cf67ea6, type: 2}

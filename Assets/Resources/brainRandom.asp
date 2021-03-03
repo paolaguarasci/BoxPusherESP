@@ -1,0 +1,10 @@
+readDir(random(randomDirection(direction(4)))).
+
+direction(0,0,0). %% fermo
+direction(1,1,0). %% sopra
+direction(2,-1,0).  %% sotto
+direction(3,0,1). %% destra
+direction(4,0,-1).  %% sinitra
+
+setOnActuator(scrivoDir(gameManager(gameManager(x(X))))) :- readDir(random(randomDirection(direction(D)))), direction(D,X,Y).
+setOnActuator(scrivoDir(gameManager(gameManager(y(Y))))) :- readDir(random(randomDirection(direction(D)))), direction(D,X,Y).
