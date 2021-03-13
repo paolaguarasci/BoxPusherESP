@@ -13,10 +13,8 @@ public class Griglia : MonoBehaviour {
     player.y += (int) dir.y;
   }
   public void muoviPlayer (int x, int y) {
-
     player.x = (int) x;
     player.y = (int) y;
-
   }
 
   public void aggiornaDir (int x, int y) {
@@ -29,7 +27,6 @@ public class Griglia : MonoBehaviour {
 
   public void azzeraGriglia () {
     mappa.Clear ();
-    // mappa = new List<Cella> ();
   }
 
   public Cella getPlayerPosition () {
@@ -68,7 +65,7 @@ public class Griglia : MonoBehaviour {
     return res;
   }
 
-  Dictionary<char, int> allCharacters = new Dictionary<char, int> () { { ' ', 0 }, { ';', 1 }, { '#', 2 }, { '_', 3 }, { '$', 4 }, { '@', 5 }, { '.', 3 },
+  Dictionary<char, int> allCharacters = new Dictionary<char, int> () { { ' ', 0 }, { ';', 1 }, { '#', 2 }, { '_', 3 }, { '$', 4 }, { '@', 5 }, { '.', 6 },
   };
   public void buildCell (int x, int y, char ch) {
     int v;

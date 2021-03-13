@@ -586,8 +586,8 @@ MonoBehaviour:
   m_ReadyForInput: 0
   m_Player: {fileID: 5173458839406768450, guid: 2ee3222728e046f4eb98cf9539e49534,
     type: 3}
-  g: {fileID: 0}
-  randomDirection: {fileID: 0}
+  g: {fileID: 733930961}
+  randomDirection: {fileID: 654261007}
   m_NextButton: {fileID: 380701019}
   moveInput: {x: 0, y: 0}
   m_LevelBuilder: {fileID: 1694413811}
@@ -1102,14 +1102,14 @@ MonoBehaviour:
   - {fileID: 11400000, guid: eb9103fb75265674abc9b5f15cf67ea6, type: 2}
   actuatorsConfigurations:
   - {fileID: 11400000, guid: 0377ffdbdee91e7499293789a7e0d253, type: 2}
-  ASPFilePath: .\Assets\Resources\Brain.asp
+  ASPFilePath: .\Assets\Resources\Brain.dlv
   ASPFileTemplatePath: .\Assets\Resources\Brain_template.asp
   enableBrain: 1
   maintainFactFile: 1
-  updateSensorsRepeteadly: 1
+  updateSensorsRepeteadly: 0
   sensorsUpdateFrequencyMS: 1000
-  updateSensorsOnTrigger: 0
+  updateSensorsOnTrigger: 1
   triggerClassPath: .\Assets\Scripts\Trigger.cs
-  updateSensorsOn: 
-  executeReasonerOn: When Sensors are ready
-  applyActuatorsCondition: Always
+  updateSensorsOn: prontoAMuovere
+  executeReasonerOn: prontoAMuovere
+  applyActuatorsCondition: prontoAMuovere

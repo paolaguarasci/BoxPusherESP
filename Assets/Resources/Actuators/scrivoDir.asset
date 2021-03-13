@@ -20,6 +20,12 @@ MonoBehaviour:
   - GameManager^Y
   - GameManager
   - GameManager^Y
+  - GameManager^X2
+  - GameManager
+  - GameManager^X2
+  - GameManager^Y2
+  - GameManager
+  - GameManager^Y2
   propertiesNames: []
   gOType: 
   configurationName: scrivoDir

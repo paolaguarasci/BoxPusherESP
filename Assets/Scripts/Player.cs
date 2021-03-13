@@ -8,6 +8,9 @@ public class Player : MonoBehaviour {
     public int x;
     public int y;
 
+    public int xPrec = -1;
+    public int yPrec = -1;
+
     public void Start () {
         x = (int) transform.position.x;
         y = (int) transform.position.y;
@@ -30,10 +33,12 @@ public class Player : MonoBehaviour {
         if (Blocked (transform.position, direction)) {
             return false;
         } else {
+            xPrec = (int) transform.position.x;
+            yPrec = (int) transform.position.y;
             transform.Translate (direction);
             x = (int) transform.position.x;
             y = (int) transform.position.y;
-            // g.muoviPlayer (x, y);
+            g.muoviPlayer (x, y);
             Debug.Log ("[PLAYER] pos x " + x + " y " + y);
             return true;
         }

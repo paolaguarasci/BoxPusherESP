@@ -1,7 +1,5 @@
 setOnActuator(scrivoDir(gameManager(gameManager(x(X))))):-
 setOnActuator(scrivoDir(gameManager(gameManager(y(X))))):-
-setOnActuator(scrivoDir(gameManager(gameManager(x2(X))))):-
-setOnActuator(scrivoDir(gameManager(gameManager(y2(X))))):-
 %readDir(random(randomDirection(direction(X)))).
 %readGriglia(griglia(griglia(player(x(X))))).
 %readGriglia(griglia(griglia(player(y(X))))).

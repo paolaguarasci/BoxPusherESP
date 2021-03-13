@@ -1,0 +1,39 @@
+% setOnActuator(scrivoDir(gameManager(gameManager(x(X))))):-
+% setOnActuator(scrivoDir(gameManager(gameManager(y(X))))):-
+% readDir(random(randomDirection(direction(X)))).
+% readGriglia(griglia(griglia(player(x(X))))).
+% readGriglia(griglia(griglia(player(y(X))))).
+% readGriglia(griglia(griglia(mappa(X,cella(x(V)))))).
+% readGriglia(griglia(griglia(mappa(X,cella(y(V)))))).
+% readGriglia(griglia(griglia(mappa(X,cella(val(V)))))).
+
+
+%    1   |    3
+%  4 0 3 |  2 0 1
+%    2   |    4
+
+direction(0,0,0).   %% fermo    -- Fermo
+direction(1,20,10). %% Sopra    -- Destra
+direction(2,0,10).  %% Sotto    -- Sinistra
+direction(3,10,20). %% Destra   -- Sopra
+direction(4,10,0).  %% Sinitra  -- Sotto
+
+celle(X, Y, I, C) :- readGriglia(griglia(griglia(mappa(I,cella(x(X)))))), readGriglia(griglia(griglia(mappa(I,cella(y(Y)))))), readGriglia(griglia(griglia(mappa(I,cella(val(C)))))).
+player(X, Y, I) :- readGriglia(griglia(griglia(mappa(I,cella(x(X)))))), readGriglia(griglia(griglia(mappa(I,cella(y(Y)))))), readGriglia(griglia(griglia(player(x(X))))), readGriglia(griglia(griglia(player(y(Y))))).
+target(X, Y, I) :- celle(X, Y, I, C), C = 3.
+box(X, Y, I)  :- celle(X, Y, I, C), C = 4.
+targetLiberi(X,Y, I) :- target(X,Y,I), not box(X,Y,I).
+stop(N, I) :- targetLiberi(_, _, I), N = 1.
+
+% mifermo :- stop(1, I), player(_, _, PI), PI = I, D = 0. %% stop
+% direzioneDaPrendere(D) :- readDir(random(randomDirection(direction(D)))), not mifermo.
+% direzioneDaPrendere(0) :- mifermo.
+
+% direzioneDaPrendere(1). % Sopra - in effetti va a destra
+% direzioneDaPrendere(2). % Sotto - in effetti va a sinistra
+% direzioneDaPrendere(3). % Destra - in effetti va sopra
+% direzioneDaPrendere(4). % Sinistra - in effetti va sotto
+
+%% Parte 1 - mi avvicino ad una scatola
+setOnActuator(scrivoDir(gameManager(gameManager(x(X))))) :- direzioneDaPrendere(D), direction(D,X,Y).
+setOnActuator(scrivoDir(gameManager(gameManager(y(Y))))) :- direzioneDaPrendere(D), direction(D,X,Y).

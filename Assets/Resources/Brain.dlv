@@ -1,0 +1,210 @@
+% setOnActuator(scrivoDir(gameManager(gameManager(x(X))))):-
+% setOnActuator(scrivoDir(gameManager(gameManager(y(X))))):-
+% setOnActuator(scrivoDir(gameManager(gameManager(x2(X))))):-
+% setOnActuator(scrivoDir(gameManager(gameManager(y2(X))))):-
+%readDir(random(randomDirection(direction(X)))).
+%readGriglia(griglia(griglia(player(x(X))))).
+%readGriglia(griglia(griglia(player(y(X))))).
+%readGriglia(griglia(griglia(mappa(X,cella(x(V)))))).
+%readGriglia(griglia(griglia(mappa(X,cella(y(V)))))).
+%readGriglia(griglia(griglia(mappa(X,cella(val(V)))))).
+
+%    1   |    3
+%  4 0 3 |  2 0 1
+%    2   |    4
+
+% direction(0,0,0).   %% fermo    -- Fermo
+% direction(1,20,10). %% Sopra    -- Destra
+% direction(2,0,10).  %% Sotto    -- Sinistra
+% direction(3,10,20). %% Destra   -- Sopra
+% direction(4,10,0).  %% Sinitra  -- Sotto
+
+% celle(X, Y, I, C) :- readGriglia(griglia(griglia(mappa(I,cella(x(X)))))), readGriglia(griglia(griglia(mappa(I,cella(y(Y)))))), readGriglia(griglia(griglia(mappa(I,cella(val(C)))))).
+% player(X, Y, I) :- readGriglia(griglia(griglia(mappa(I,cella(x(X)))))), readGriglia(griglia(griglia(mappa(I,cella(y(Y)))))), readGriglia(griglia(griglia(player(x(X))))), readGriglia(griglia(griglia(player(y(Y))))).
+% target(X, Y, I) :- celle(X, Y, I, C), C = 3.
+% box(X, Y, I)  :- celle(X, Y, I, C), C = 4.
+% targetLiberi(X,Y, I) :- target(X,Y,I), not box(X,Y,I).
+% stop(N, I) :- targetLiberi(_, _, I), N = 1.
+
+% mifermo :- stop(1, I), player(_, _, PI), PI = I, D = 0. %% stop
+% direzioneDaPrendere(D) :- readDir(random(randomDirection(direction(D)))), not mifermo.
+% direzioneDaPrendere(0) :- mifermo.
+
+% direzioneDaPrendere(1). % Sopra - in effetti va a destra
+% direzioneDaPrendere(2). % Sotto - in effetti va a sinistra
+% direzioneDaPrendere(3). % Destra - in effetti va sopra
+% direzioneDaPrendere(4). % Sinistra - in effetti va sotto
+
+% scatolaTrovata(D) :- player(_,_,NP), box(_,_,NB), NP=NB-1, D=1.
+% scatolaTrovata(D) :- player(_,_,NP), box(_,_,NB), NP=NB+1, D=2. 
+% scatolaTrovata(D) :- player(_,_,NP), box(_,_,NB), NP=NB-9, D=3. 
+% scatolaTrovata(D) :- player(_,_,NP), box(_,_,NB), NP=NB+9, D=4. 
+
+% giroAttorno(M1,M2) :- player(_,_,NP), scatolaTrovata(D), direzioneDaPrendere(D1), D = 3, D1 = 2, M1=1, M2=3.
+% angolo :- giroAttorno(M1, M2).
+
+% setOnActuator(scrivoDir(gameManager(gameManager(x(X))))) :- giroAttorno(D,D2), direction(D,X,Y), angolo.
+% setOnActuator(scrivoDir(gameManager(gameManager(y(Y))))) :- giroAttorno(D,D2), direction(D,X,Y), angolo.
+% setOnActuator(scrivoDir(gameManager(gameManager(x2(X))))) :- angolo, giroAttorno(D1, D2), direction(D2,X,Y).
+% setOnActuator(scrivoDir(gameManager(gameManager(y2(Y))))) :- angolo, giroAttorno(D1, D2), direction(D2,X,Y).
+
+% setOnActuator(scrivoDir(gameManager(gameManager(x(X))))) :- direzioneDaPrendere(D), direction(D,X,Y), not angolo.
+% setOnActuator(scrivoDir(gameManager(gameManager(y(Y))))) :- direzioneDaPrendere(D), direction(D,X,Y), not angolo.
+% setOnActuator(scrivoDir(gameManager(gameManager(x2(X))))) :- not angolo, X = -1.
+% setOnActuator(scrivoDir(gameManager(gameManager(y2(Y))))) :- not angolo, Y = -1.
+
+
+
+
+
+
+%%  ' '   0   Spazio 
+%%  ';'   1   Nuovo Livello
+%%  '#'   2   Muro
+%%  '_'   3   Muro v2
+%%  '$'   4   Scatola
+%%  '@'   5   Personaggio
+%%  '.'   6   Target
+
+%   1   |    3
+% 4 0 3 |  2 0 1
+%   2   |    4
+
+% direction(0,0,0).   %% fermo    -- Fermo
+% direction(1,20,10). %% Sopra    -- Destra
+% direction(2,0,10).  %% Sotto    -- Sinistra
+% direction(3,10,20). %% Destra   -- Sopra
+% direction(4,10,0).  %% Sinitra  -- Sotto
+
+% celle(X, Y, I, C) :- readGriglia(griglia(griglia(mappa(I,cella(x(X)))))), readGriglia(griglia(griglia(mappa(I,cella(y(Y)))))), readGriglia(griglia(griglia(mappa(I,cella(val(C)))))).
+% player(X, Y, I) :- readGriglia(griglia(griglia(mappa(I,cella(x(X)))))), readGriglia(griglia(griglia(mappa(I,cella(y(Y)))))), readGriglia(griglia(griglia(player(x(X))))), readGriglia(griglia(griglia(player(y(Y))))).
+% target(X, Y, I) :- celle(X, Y, I, C), C = 3.
+% box(X, Y, I)  :- celle(X, Y, I, C), C = 4.
+% targetLiberi(X,Y, I) :- target(X,Y,I), not box(X,Y,I).
+% stop(I) :- targetLiberi(_, _, I).
+
+% mifermo :- player(_, _, PI), PI = I, stop(I).
+% direzioneDaPrendere(0) :- mifermo.
+% direzioneDaPrendere(D) :- readDir(random(randomDirection(direction(D)))), not mifermo.
+
+% dir(1). % Sopra - in effetti va a destra
+% dir(2). % Sotto - in effetti va a sinistra
+% dir(3). % Destra - in effetti va sopra
+% dir(4). % Sinistra - in effetti va sotto
+
+% direzioneDaPrendere(D) :- dir(D), not mifermo.
+
+% setOnActuator(scrivoDir(gameManager(gameManager(x(X))))) :- direzioneDaPrendere(D), direction(D,X,Y).
+% setOnActuator(scrivoDir(gameManager(gameManager(y(Y))))) :- direzioneDaPrendere(D), direction(D,X,Y).
+direction(0,0,0). %% fermo
+direction(1,20,10). %% sopra
+direction(2,0,10).  %% sotto
+direction(3,10,20). %% destra
+direction(4,10,0).  %% sinitra
+
+%% MAPPA %%
+celle(X, Y, I, C) :- readGriglia(griglia(griglia(mappa(I,cella(x(X)))))), readGriglia(griglia(griglia(mappa(I,cella(y(Y)))))), readGriglia(griglia(griglia(mappa(I,cella(val(C)))))).
+nodo(I) :- readGriglia(griglia(griglia(mappa(I,cella(x(A)))))).
+
+arc(I1, I2) :- nodo(I1), nodo(I2), celle(X1,Y1,I1,C1), celle(X2,Y2,I2,C2), I1 != I2, Y1 = Y2, X2 = X1 + 1, C1 != 2, C2 != 2.   
+arc(I1, I2) :- nodo(I1), nodo(I2), celle(X1,Y1,I1,C1), celle(X2,Y2,I2,C2), I1 != I2, Y1 = Y2, X2 = X1 - 1, C1 != 2, C2 != 2.   
+arc(I1, I2) :- nodo(I1), nodo(I2), celle(X1,Y1,I1,C1), celle(X2,Y2,I2,C2), I1 != I2, Y1 = Y2 + 1, X2 = X1, C1 != 2, C2 != 2.   
+arc(I1, I2) :- nodo(I1), nodo(I2), celle(X1,Y1,I1,C1), celle(X2,Y2,I2,C2), I1 != I2, Y1 = Y2 - 1, X2 = X1, C1 != 2, C2 != 2.   
+
+muro(X, Y, I) :- celle(X, Y, I, C), C = 2.
+libero(X, Y, I) :- celle(X, Y, I, C), C = 0.
+
+%% PLAYER %%
+player(X, Y, I) :- readGriglia(griglia(griglia(mappa(I,cella(x(X)))))), readGriglia(griglia(griglia(mappa(I,cella(y(Y)))))), readGriglia(griglia(griglia(player(x(X))))), readGriglia(griglia(griglia(player(y(Y))))).
+
+%% BOX %%
+box(X, Y, I)  :- celle(X, Y, I, C), C = 4.
+
+%% TARGET %%
+target(X, Y, I) :- celle(X, Y, I, C), C = 6.
+
+%% CAMMINO Fase 1 (cerco una scatola) %%
+startS(I) :- player(_, _, I), not st.
+stopS(I) :- box(_, _, I), not st. %% Va bene perche' per ora la scatola e' una sola. Poi va trovato un modo per selezionarne una (la piu vicina?)
+
+inPath(X,Y) | outPath(X,Y) :- arc(X,Y), not st.
+:- inPath(X,Y), inPath(X,Y1), Y != Y1, not st.
+:- inPath(X,Y), inPath(X1,Y), X != X1, not st. 
+reachedS(X) :- startS(X), not st.
+reachedS(X) :- reachedS(Y), inPath(Y,X), not st.
+:- stopS(X), not reachedS(X), not st.
+:- stopS(X), inPath(X,Y), not st.
+
+scatolaTrovata(D) :- player(_,_,NP), box(_,_,NB), NP=NB-1, D=1.
+scatolaTrovata(D) :- player(_,_,NP), box(_,_,NB), NP=NB+1, D=2. 
+scatolaTrovata(D) :- player(_,_,NP), box(_,_,NB), NP=NB-9, D=3. 
+scatolaTrovata(D) :- player(_,_,NP), box(_,_,NB), NP=NB+9, D=4. 
+st :- scatolaTrovata(D).
+
+%% Non mollo piu la scatola
+% :- ???
+
+%% CAMMINO Fase 2 (cerco un target) %%
+startT(I) :- box(_, _, I), st.
+stopT(I) :- target(_, _, I), st. %% Va bene perche' per ora il target e' uno solo. Poi va trovato un modo per selezionarne uno (il piu vicino?)
+
+inPath(X,Y) | outPath(X,Y) :- arc(X,Y), st.
+:- inPath(X,Y), inPath(X,Y1), Y != Y1, st.
+:- inPath(X,Y), inPath(X1,Y), X != X1, st. 
+reachedT(X) :- startT(X), st.
+reachedT(X) :- reachedT(Y), inPath(Y,X), st.
+:- stopT(X), not reachedT(X), st.
+:- stopT(X), inPath(X,Y), st.
+
+giroAttorno(M1,M2) :- player(_,_,NP), scatolaTrovata(D), direzioneDaPrendere(D1), D = 3, D1 = 2, M1=1, M2=4.
+giroAttorno(M1,M2) :- player(_,_,NP), scatolaTrovata(D), direzioneDaPrendere(D1), D = 3, D1 = 2, M1=1, M2=4.
+giroAttorno(M1,M2) :- player(_,_,NP), scatolaTrovata(D), direzioneDaPrendere(D1), D = 3, D1 = 2, M1=1, M2=4.
+giroAttorno(M1,M2) :- player(_,_,NP), scatolaTrovata(D), direzioneDaPrendere(D1), D = 3, D1 = 2, M1=1, M2=4.
+
+angolo :- giroAttorno(M1, M2).
+
+%% Evitiamo i muri
+% :- reached(X), muro(X).
+
+%% OTTIMIZZAZIONE %%
+% Pago la lunghezza del cammino a lv 1
+:~ #count{X,Y: inPath(X,Y)} = C. [C@1]
+% Tra cammini di uguale lunghezza preferisco quello che mi fa muovere verso sinistra e in alto
+% :~ inPath(A,B), start(A), D = A-B, A > B. [D@2]
+% :~ inPath(A,B), start(A), D = B-A, A < B. [D@2]
+% Preferisco i cammini con scatole in mezzo
+% :~ inPath(X, Y), celle(A, B, Y, C), C != 4. [1@3]
+
+%% OUTPUT (Direzione da prendere) %%
+%    1   |    3
+%  4 0 3 |  2 0 1
+%    2   |    4
+
+direzioneDaPrendere(D) :- player(_, _, PI), inPath(PI, SI), SI=PI+1, D=1, not st. %% Destra
+direzioneDaPrendere(D) :- player(_, _, PI), inPath(PI, SI), SI=PI-1, D=2, not st. %% Sinistra
+direzioneDaPrendere(D) :- player(_, _, PI), inPath(PI, SI), SI=PI-9, D=4, not st. %% Sopra
+direzioneDaPrendere(D) :- player(_, _, PI), inPath(PI, SI), SI=PI+9, D=3, not st. %% Sotto
+
+direzioneDaPrendere(D) :- box(_, _, PI), inPath(PI, SI), SI=PI+1, D=1, st. %% Destra
+direzioneDaPrendere(D) :- box(_, _, PI), inPath(PI, SI), SI=PI-1, D=2, st. %% Sinistra
+direzioneDaPrendere(D) :- box(_, _, PI), inPath(PI, SI), SI=PI-9, D=4, st. %% Sopra
+direzioneDaPrendere(D) :- box(_, _, PI), inPath(PI, SI), SI=PI+9, D=3, st. %% Sotto
+
+playerNextPos(X, Y) :- player(XP, YP, P), inPath(P, I), celle(X, Y, I, C).
+
+playerNextId(I) :- player(XP, YP, P), direzioneDaPrendere(D), D = 1, I = P + 1.
+playerNextId(I) :- player(XP, YP, P), direzioneDaPrendere(D), D = 2, I = P - 1.
+playerNextId(I) :- player(XP, YP, P), direzioneDaPrendere(D), D = 3, I = P + 9.
+playerNextId(I) :- player(XP, YP, P), direzioneDaPrendere(D), D = 4, I = P - 9.
+
+
+
+setOnActuator(scrivoDir(gameManager(gameManager(x(X))))) :- giroAttorno(D,D2), direction(D,X,Y), angolo.
+setOnActuator(scrivoDir(gameManager(gameManager(y(Y))))) :- giroAttorno(D,D2), direction(D,X,Y), angolo.
+setOnActuator(scrivoDir(gameManager(gameManager(x2(X))))) :- angolo, giroAttorno(D1, D2), direction(D2,X,Y).
+setOnActuator(scrivoDir(gameManager(gameManager(y2(Y))))) :- angolo, giroAttorno(D1, D2), direction(D2,X,Y).
+
+setOnActuator(scrivoDir(gameManager(gameManager(x(X))))) :- direzioneDaPrendere(D), direction(D,X,Y), not angolo.
+setOnActuator(scrivoDir(gameManager(gameManager(y(Y))))) :- direzioneDaPrendere(D), direction(D,X,Y), not angolo.
+setOnActuator(scrivoDir(gameManager(gameManager(x2(X))))) :- not angolo, X = -1.
+setOnActuator(scrivoDir(gameManager(gameManager(y2(Y))))) :- not angolo, Y = -1.

@@ -1,18 +1,15 @@
+
+direction(0,0,0). %% fermo
+direction(1,1,0). %% sopra
+direction(2,-1,0).  %% sotto
+direction(3,0,1). %% destra
+direction(4,0,-1).  %% sinitra
+
 % direction(0,0,0). %% fermo
 % direction(1,20,10). %% sopra
 % direction(2,0,10).  %% sotto
 % direction(3,10,20). %% destra
 % direction(4,10,0).  %% sinitra
-
-% setOnActuator(scrivoDir(gameManager(gameManager(x(X))))) :- readDir(random(randomDirection(direction(D)))), direction(D,X,Y).
-% setOnActuator(scrivoDir(gameManager(gameManager(y(Y))))) :- readDir(random(randomDirection(direction(D)))), direction(D,X,Y).
-
-
-direction(0,0,0). %% fermo
-direction(1,20,10). %% sopra
-direction(2,0,10).  %% sotto
-direction(3,10,20). %% destra
-direction(4,10,0).  %% sinitra
 
 celle(X, Y, I, C) :- readGriglia(griglia(griglia(mappa(I,cella(x(X)))))), readGriglia(griglia(griglia(mappa(I,cella(y(Y)))))), readGriglia(griglia(griglia(mappa(I,cella(val(C)))))).
 
@@ -77,8 +74,8 @@ stop(N, I) :- boxDaMuovere(_, _, I), scatolaPiuVicina(I, _), N = 1.
 
 direzioneDaPrendere(D) :- inPath(PI, SI, _), player(_, _, PI), PI = SI - 9, D = 1. %% sopra
 direzioneDaPrendere(D) :- inPath(PI, SI, _), player(_, _, PI), PI = SI + 9, D = 2. %% sotto
-direzioneDaPrendere(D) :- inPath(PI, SI, _), player(_, _, PI), PI = SI - 1, D = 4. %% destra - invertito
-direzioneDaPrendere(D) :- inPath(PI, SI, _), player(_, _, PI), PI = SI + 1, D = 3. %% sinistra - invertito
+direzioneDaPrendere(D) :- inPath(PI, SI, _), player(_, _, PI), PI = SI - 1, D = 3. %% destra
+direzioneDaPrendere(D) :- inPath(PI, SI, _), player(_, _, PI), PI = SI + 1, D = 4. %% sinistra
 
 %% Parte 1 - mi avvicino ad una scatola
 setOnActuator(scrivoDir(gameManager(gameManager(x(X))))) :- direzioneDaPrendere(D), direction(D,X,Y).
@@ -88,3 +85,4 @@ setOnActuator(scrivoDir(gameManager(gameManager(y(Y))))) :- direzioneDaPrendere(
 
 
 %% Parte 2 - Mi muovo verso un target
+  
