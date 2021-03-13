@@ -24,42 +24,57 @@ public class GameManager : MonoBehaviour {
     private int _y2 = -1;
     public int Y2 { get { return _y2; } set { _y2 = value; } }
 
+    private void Awake () {
+        _x = -1;
+        _y = -1;
+    }
+
     void Start () {
         // m_NextButton.SetActive (false);
         ResetScene ();
         RandomDirection rd = FindObjectOfType<RandomDirection> ();
         g = FindObjectOfType<Griglia> ();
     }
+
+    public string dirTxt (int a, int b) {
+        if (a == 0 && b == 0) return "fermo";
+        if (a == 1 && b == 0) return "destra";
+        if (a == -1 && b == 0) return "sinistra";
+        if (a == 0 && b == -1) return "sotto";
+        if (a == 0 && b == 1) return "sopra";
+        return "";
+    }
+
     void Update () {
         // Vector2 moveInput = new Vector2 (Input.GetAxisRaw ("Horizontal"), Input.GetAxisRaw ("Vertical"));
 
-        Debug.Log ("[GAMEMANAGER] MOVE INPUT  X " + X + " Y " + Y);
-        float xf = (X - 10) / 1.0f;
-        float yf = (Y - 10) / 1.0f;
+        float xf = (X - 10) / 10.0f;
+        float yf = (Y - 10) / 10.0f;
+        
+        Debug.Log ("[GAMEMANAGER] MOVE INPUT X " + X + " Y " + Y);
         Vector2 moveInput = new Vector2 (xf, yf);
-        float xf2 = (X2 - 10) / 1.0f;
-        float yf2 = (Y2 - 10) / 1.0f;
+        float xf2 = (X2 - 10) / 10.0f;
+        float yf2 = (Y2 - 10) / 10.0f;
         Vector2 moveInput2 = new Vector2 (xf2, yf2);
         moveInput.Normalize ();
         moveInput2.Normalize ();
         if (moveInput.sqrMagnitude > 0.5 && (X != -1 && Y != -1)) {
             Debug.Log ("[GAMEMANAGER] SQR MAG > 0.5");
             if (m_ReadyForInput) {
-                Debug.Log ("[GAMEMANAGER] MOVE INPUT xf" + xf + "  yf " + yf);
+                Debug.Log ("[GAMEMANAGER] MOVE INPUT xf,xy [" + xf + "," + yf + "] " + " dir " + dirTxt ((int) xf, (int) yf));
                 m_ReadyForInput = false;
                 m_Player.Move (moveInput);
+                if (X2 != -1 && Y2 != -1) {
+                    m_Player.Move (moveInput2);
+                    Debug.Log ("[GAMEMANAGER] MOVE INPUT xf2,xy2 [" + xf2 + "," + yf2 + "]");
+                    X2 = -1;
+                    Y2 = -1;
+                }
                 Cella player = g.getPlayerPosition ();
                 Debug.Log ("[GAMEMANAGER] player x " + player.x + " y " + player.y);
                 m_NextButton.SetActive (IsLevelComplete ());
                 X = -1;
                 Y = -1;
-
-                if (X2 != -1 && Y2 != -1) {
-                    m_Player.Move (moveInput2);
-                    Debug.Log ("[GAMEMANAGER]  X2 " + X2 + " Y2 " + Y2);
-                    X2 = -1;
-                    Y2 = -1;
-                }
             }
         } else {
             Debug.Log ("[GAMEMANAGER] SQR MAG < 0.5");
@@ -76,7 +91,6 @@ public class GameManager : MonoBehaviour {
     public void ResetScene () {
         StartCoroutine (ResetSceneASync ());
     }
-
     IEnumerator ResetSceneASync () {
         Debug.Log ("ResetScene");
         if (SceneManager.sceneCount > 1) {

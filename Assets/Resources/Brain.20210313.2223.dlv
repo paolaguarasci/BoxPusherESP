@@ -156,10 +156,8 @@ reachedT(X) :- reachedT(Y), inPath(Y,X), st.
 :- stopT(X), not reachedT(X), st.
 :- stopT(X), inPath(X,Y), st.
 
-giroAttorno(M1,M2) :- player(_,_,NP), scatolaTrovata(D), direzioneDaPrendere(D1), D = 3, D1 = 2, M1=1, M2=3.
-giroAttorno(M1,M2) :- player(_,_,NP), scatolaTrovata(D), direzioneDaPrendere(D1), D = 3, D1 = 1, M1=2, M2=3.
-giroAttorno(M1,M2) :- player(_,_,NP), scatolaTrovata(D), direzioneDaPrendere(D1), D = 4, D1 = 2, M1=1, M2=4.
-giroAttorno(M1,M2) :- player(_,_,NP), scatolaTrovata(D), direzioneDaPrendere(D1), D = 4, D1 = 1, M1=2, M2=4.
+giroAttorno(M1,M2) :- player(_,_,NP), scatolaTrovata(D), direzioneDaPrendere(D1), D = 3, D1 = 2, M1=1, M2=4.
+giroAttorno(M1,M2) :- player(_,_,NP), scatolaTrovata(D), direzioneDaPrendere(D1), D = 3, D1 = 2, M1=1, M2=4.
 
 angolo :- giroAttorno(M1, M2).
 
