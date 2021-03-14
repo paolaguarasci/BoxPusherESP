@@ -21,8 +21,8 @@ public class Trigger : ScriptableObject {
   public Boolean prontoAMuovere () {
     if (gameManager.m_ReadyForInput == false) {
       Debug.Log ("[TRIGGER] NON Pronto a muovere");
-      gameManager.X = 10;
-      gameManager.Y = 10;
+      gameManager.X = -1;
+      gameManager.Y = -1;
       return false;
     } else if (gameManager.m_ReadyForInput == true) {
       Debug.Log ("[TRIGGER] Pronto a muovere");
