@@ -197,8 +197,6 @@ playerNextId(I) :- player(XP, YP, P), direzioneDaPrendere(D), D = 2, I = P - 1.
 playerNextId(I) :- player(XP, YP, P), direzioneDaPrendere(D), D = 3, I = P + 9.
 playerNextId(I) :- player(XP, YP, P), direzioneDaPrendere(D), D = 4, I = P - 9.
 
-
-
 setOnActuator(scrivoDir(gameManager(gameManager(x(X))))) :- giroAttorno(D,D2), direction(D,X,Y), angolo.
 setOnActuator(scrivoDir(gameManager(gameManager(y(Y))))) :- giroAttorno(D,D2), direction(D,X,Y), angolo.
 setOnActuator(scrivoDir(gameManager(gameManager(x2(X))))) :- giroAttorno(D1, D2), direction(D2,X,Y), angolo.

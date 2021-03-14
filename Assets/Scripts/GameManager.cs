@@ -47,11 +47,8 @@ public class GameManager : MonoBehaviour {
 
     void Update () {
         // Vector2 moveInput = new Vector2 (Input.GetAxisRaw ("Horizontal"), Input.GetAxisRaw ("Vertical"));
-
         float xf = (X - 10) / 10.0f;
         float yf = (Y - 10) / 10.0f;
-        
-        Debug.Log ("[GAMEMANAGER] MOVE INPUT X " + X + " Y " + Y);
         Vector2 moveInput = new Vector2 (xf, yf);
         float xf2 = (X2 - 10) / 10.0f;
         float yf2 = (Y2 - 10) / 10.0f;
@@ -59,7 +56,6 @@ public class GameManager : MonoBehaviour {
         moveInput.Normalize ();
         moveInput2.Normalize ();
         if (moveInput.sqrMagnitude > 0.5 && (X != -1 && Y != -1)) {
-            Debug.Log ("[GAMEMANAGER] SQR MAG > 0.5");
             if (m_ReadyForInput) {
                 Debug.Log ("[GAMEMANAGER] MOVE INPUT xf,xy [" + xf + "," + yf + "] " + " dir " + dirTxt ((int) xf, (int) yf));
                 m_ReadyForInput = false;
@@ -77,7 +73,6 @@ public class GameManager : MonoBehaviour {
                 Y = -1;
             }
         } else {
-            Debug.Log ("[GAMEMANAGER] SQR MAG < 0.5");
             m_ReadyForInput = true;
         }
     }
@@ -92,27 +87,20 @@ public class GameManager : MonoBehaviour {
         StartCoroutine (ResetSceneASync ());
     }
     IEnumerator ResetSceneASync () {
-        Debug.Log ("ResetScene");
         if (SceneManager.sceneCount > 1) {
             AsyncOperation asyncUnload = SceneManager.UnloadSceneAsync ("Level");
             while (!asyncUnload.isDone) {
                 yield return null;
-                Debug.Log ("Unloading...");
             }
-            Debug.Log ("Unload ok");
             Resources.UnloadUnusedAssets ();
-
         }
         AsyncOperation asyncLoad = SceneManager.LoadSceneAsync ("Level", LoadSceneMode.Additive);
         while (!asyncLoad.isDone) {
             yield return null;
-            Debug.Log ("Loading...");
         }
-        Debug.Log ("Scena caricata");
         SceneManager.SetActiveScene (SceneManager.GetSceneByName ("Level"));
         m_LevelBuilder.Build ();
         m_Player = FindObjectOfType<Player> ();
-        Debug.Log ("Livello caricato");
     }
     bool IsLevelComplete () {
         Box[] boxes = FindObjectsOfType<Box> ();

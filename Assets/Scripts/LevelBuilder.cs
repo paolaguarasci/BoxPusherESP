@@ -60,7 +60,7 @@ public class LevelBuilder : MonoBehaviour {
                     y++;
                     x = startx;
                 }
-                g.printGriglia ();
+                // g.printGriglia ();
                 g.setPlayerInitialPosition (g.findPlayerInitialPosition ());
             }
 

@@ -31,12 +31,6 @@ public class Levels : MonoBehaviour {
 
     private void Awake () {
         TextAsset textAsset = Resources.Load<TextAsset> (filename) as TextAsset;
-        if (!textAsset) {
-            Debug.Log (filename + ".txt non esiste!");
-            return;
-        } else {
-            Debug.Log ("Livelli caricati");
-        }
         string completeText = textAsset.text;
         string[] lines;
         lines = completeText.Split (new string[] { "\n" }, System.StringSplitOptions.None);
@@ -44,7 +38,6 @@ public class Levels : MonoBehaviour {
         for (long i = 0; i < lines.LongLength; i++) {
             string line = lines[i];
             if (line.StartsWith (";")) {
-                Debug.Log ("Aggiunto nuovo livello");
                 m_Levels.Add (new Level ());
                 continue;
             }

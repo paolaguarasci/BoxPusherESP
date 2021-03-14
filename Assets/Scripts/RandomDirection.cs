@@ -14,7 +14,6 @@ public class RandomDirection : MonoBehaviour {
 
     void Update () {
         dir = getRandomDirection ();
-        Debug.Log("[RANDOM] " + dir);
     }
 
     public int fakeBrain(Griglia g) {

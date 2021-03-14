@@ -39,7 +39,6 @@ public class Player : MonoBehaviour {
             x = (int) transform.position.x;
             y = (int) transform.position.y;
             g.muoviPlayer (x, y);
-            Debug.Log ("[PLAYER] pos x " + x + " y " + y);
             return true;
         }
 
