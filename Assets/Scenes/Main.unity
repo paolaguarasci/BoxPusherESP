@@ -660,7 +660,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 733930960}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 1560303995, guid: b35bdd8e9f8e75b45aba5c946c47f528, type: 3}
   m_Name: 
@@ -1111,5 +1111,5 @@ MonoBehaviour:
   updateSensorsOnTrigger: 1
   triggerClassPath: .\Assets\Scripts\Trigger.cs
   updateSensorsOn: prontoAMuovere
-  executeReasonerOn: prontoAMuovere
-  applyActuatorsCondition: prontoAMuovere
+  executeReasonerOn: When Sensors are ready
+  applyActuatorsCondition: Always
