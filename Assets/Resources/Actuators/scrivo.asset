@@ -9,19 +9,24 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: -1431113182, guid: b35bdd8e9f8e75b45aba5c946c47f528, type: 3}
-  m_Name: readDir
+  m_Script: {fileID: -1405478137, guid: b35bdd8e9f8e75b45aba5c946c47f528, type: 3}
+  m_Name: scrivo
   m_EditorClassIdentifier: 
-  gOName: Random
+  gOName: GameManager
   properties:
-  - RandomDirection^direction
-  - RandomDirection
-  - RandomDirection^direction
+  - GameManager^X
+  - GameManager
+  - GameManager^X
+  - GameManager^Y
+  - GameManager
+  - GameManager^Y
+  - GameManager^X2
+  - GameManager
+  - GameManager^X2
+  - GameManager^Y2
+  - GameManager
+  - GameManager^Y2
   propertiesNames: []
   gOType: 
-  configurationName: readDir
+  configurationName: scrivo
   advancedConf: []
-  operationPerProperty:
-  - Key: RandomDirection^direction
-    Value: 0
-  specificValuePerProperty: []

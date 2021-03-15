@@ -503,15 +503,15 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 654261005}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 1560303995, guid: b35bdd8e9f8e75b45aba5c946c47f528, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   gOConfigurations:
-  - {fileID: 11400000, guid: 1dae9d577a228f04bb358ce66d72adec, type: 2}
+  - {fileID: 11400000, guid: f302fb67b61256c45922ff32d53b35e0, type: 2}
   localNames:
-  - readDir
+  - random
   goName: Random
 --- !u!114 &654261007
 MonoBehaviour:
@@ -604,9 +604,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gOConfigurations:
-  - {fileID: 11400000, guid: 0377ffdbdee91e7499293789a7e0d253, type: 2}
+  - {fileID: 11400000, guid: 42a8c25277f07bb42bb68902fa790ce6, type: 2}
   localNames:
-  - scrivoDir
+  - scrivo
   goName: GameManager
 --- !u!1 &733930960
 GameObject:
@@ -638,6 +638,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: acb3ea2787035864882bc98d802457f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  direzionePrecedente: -1
   direzione: -1
 --- !u!4 &733930962
 Transform:
@@ -665,8 +666,10 @@ MonoBehaviour:
   m_Script: {fileID: 1560303995, guid: b35bdd8e9f8e75b45aba5c946c47f528, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gOConfigurations: []
-  localNames: []
+  gOConfigurations:
+  - {fileID: 11400000, guid: 0ff440e58c65a004d8a9460e78029633, type: 2}
+  localNames:
+  - read
   goName: Griglia
 --- !u!1 &1510211793
 GameObject:
@@ -1098,18 +1101,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   debug: 1
   sensorsConfigurations:
-  - {fileID: 11400000, guid: 1dae9d577a228f04bb358ce66d72adec, type: 2}
-  - {fileID: 11400000, guid: eb9103fb75265674abc9b5f15cf67ea6, type: 2}
+  - {fileID: 11400000, guid: f302fb67b61256c45922ff32d53b35e0, type: 2}
+  - {fileID: 11400000, guid: 0ff440e58c65a004d8a9460e78029633, type: 2}
   actuatorsConfigurations:
-  - {fileID: 11400000, guid: 0377ffdbdee91e7499293789a7e0d253, type: 2}
+  - {fileID: 11400000, guid: 42a8c25277f07bb42bb68902fa790ce6, type: 2}
   ASPFilePath: .\Assets\Resources\Brain.dlv
   ASPFileTemplatePath: .\Assets\Resources\Brain_template.asp
   enableBrain: 1
   maintainFactFile: 1
-  updateSensorsRepeteadly: 0
-  sensorsUpdateFrequencyMS: 1000
-  updateSensorsOnTrigger: 1
+  updateSensorsRepeteadly: 1
+  sensorsUpdateFrequencyMS: 500
+  updateSensorsOnTrigger: 0
   triggerClassPath: .\Assets\Scripts\Trigger.cs
-  updateSensorsOn: prontoAMuovere
+  updateSensorsOn: 
   executeReasonerOn: When Sensors are ready
   applyActuatorsCondition: Always

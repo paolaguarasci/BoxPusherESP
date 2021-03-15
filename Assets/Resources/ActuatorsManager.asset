@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: ActuatorsManager
   m_EditorClassIdentifier: 
   actuatorsConfs:
-  - {fileID: 11400000, guid: 0377ffdbdee91e7499293789a7e0d253, type: 2}
+  - {fileID: 11400000, guid: 42a8c25277f07bb42bb68902fa790ce6, type: 2}
   confsToSerialize:
-  - {fileID: 11400000, guid: 0377ffdbdee91e7499293789a7e0d253, type: 2}
+  - {fileID: 11400000, guid: 42a8c25277f07bb42bb68902fa790ce6, type: 2}
   configuredGameObject:
   - GameManager
   configurationsNames:
-  - scrivoDir
+  - scrivo

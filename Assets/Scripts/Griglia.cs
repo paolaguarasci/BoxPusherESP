@@ -6,23 +6,56 @@ public class Griglia : MonoBehaviour {
   public List<Cella> mappa = new List<Cella> ();
   public Cella player = new Cella ();
 
-  public int direzione = -1;
+  public int direzionePrecedente = 0;
+  public int direzione = 0;
 
   public void muoviPlayer (Vector2 dir) {
     player.x += (int) dir.x;
     player.y += (int) dir.y;
   }
   public void muoviPlayer (int x, int y) {
+    aggiornaGriglia (x, y);
     player.x = (int) x;
     player.y = (int) y;
+
   }
 
-  public void aggiornaDir (int x, int y) {
-    if (player.x == x && player.y == y - 1) { direzione = 1; } // sopra
-    else if (player.x == x && player.y == y + 1) { direzione = 2; } // sotto
-    else if (player.x == x + 1 && player.y == y) { direzione = 3; } // destra
-    else if (player.x == x - 1 && player.y == y) { direzione = 4; } // sinistra
+  public void aggiornaGriglia (int x, int y) {
+    int deltaX = x - player.x;
+    int deltaY = y - player.y;
+    direzionePrecedente = direzione;
+    Cella nextCellaPlayer = getCella (x, y);
+    if (nextCellaPlayer.ch == '$') {
+      setCella (x, y, ' ', 0);
+      setCella (x + deltaX, y + deltaY, '$', 4);
+    }
+  }
+  public void setCella (int x, int y, char ch, int val) {
+    foreach (Cella c in mappa) {
+      if (c.x == x && c.y == y) {
+        c.ch = ch;
+        c.val = val;
+        return;
+      }
+    }
+  }
+
+  public Cella getCella (int x, int y) {
+    foreach (Cella c in mappa) {
+      if (c.x == x && c.y == y) {
+        return c;
+      }
+    }
+    return null;
+  }
+  public void aggiornaDir (Vector2 dir) {
+    direzionePrecedente = direzione;
+    if (dir.x == 1 && dir.y == 0) { direzione = 1; } // sopra
+    else if (dir.x == -1 && dir.y == 0) { direzione = 2; } // sotto
+    else if (dir.x == 0 && dir.y == 1) { direzione = 3; } // destra
+    else if (dir.x == 0 && dir.y == -1) { direzione = 4; } // sinistra
     else { direzione = 0; }
+    Debug.Log ("Aggiorno direzione D " + direzione + " DP " + direzionePrecedente);
   }
 
   public void azzeraGriglia () {

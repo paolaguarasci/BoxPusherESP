@@ -13,13 +13,11 @@ MonoBehaviour:
   m_Name: SensorsManager
   m_EditorClassIdentifier: 
   confsToSerialize:
-  - {fileID: 11400000, guid: 1dae9d577a228f04bb358ce66d72adec, type: 2}
-  - {fileID: 11400000, guid: 0d511546c570f02408f35a4f014bf67b, type: 2}
-  - {fileID: 11400000, guid: eb9103fb75265674abc9b5f15cf67ea6, type: 2}
+  - {fileID: 11400000, guid: 0ff440e58c65a004d8a9460e78029633, type: 2}
+  - {fileID: 11400000, guid: f302fb67b61256c45922ff32d53b35e0, type: 2}
   configuredGameObject:
-  - Random
   - Griglia
+  - Random
   configurationsNames:
-  - readDir
-  - qwdqwdqw
-  - readGriglia
+  - read
+  - random

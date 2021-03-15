@@ -97,3 +97,5 @@ MonoBehaviour:
   g: {fileID: 0}
   x: -15
   y: 0
+  xPrec: -1
+  yPrec: -1

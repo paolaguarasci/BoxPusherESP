@@ -10,7 +10,11 @@ public class Player : MonoBehaviour {
 
     public int xPrec = -1;
     public int yPrec = -1;
+    private int _dp = -1;
+    public int DP { get { return _dp; } set { _dp = value; } }
 
+    private int _d = -1;
+    public int D { get { return _d; } set { _d = value; } }
     public void Start () {
         x = (int) transform.position.x;
         y = (int) transform.position.y;
@@ -35,15 +39,25 @@ public class Player : MonoBehaviour {
         } else {
             xPrec = (int) transform.position.x;
             yPrec = (int) transform.position.y;
+            DP = D;
             transform.Translate (direction);
             x = (int) transform.position.x;
             y = (int) transform.position.y;
             g.muoviPlayer (x, y);
+            g.aggiornaDir (direction);
+            D = getDirection (direction);
             return true;
         }
 
     }
-
+    public int getDirection (Vector2 dir) {
+        if (dir.x == 0 && dir.y == 0) return 0;
+        if (dir.x == 1 && dir.y == 0) return 1;
+        if (dir.x == -1 && dir.y == 0) return 2;
+        if (dir.x == 0 && dir.y == -1) return 3;
+        if (dir.x == 0 && dir.y == 1) return 4;
+        return -1;
+    }
     bool Blocked (Vector3 position, Vector2 direction) {
         Vector2 newPos = new Vector2 (position.x, position.y) + direction;
         GameObject[] walls = GameObject.FindGameObjectsWithTag ("Wall");

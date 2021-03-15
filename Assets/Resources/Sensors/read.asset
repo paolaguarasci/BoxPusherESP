@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: -1431113182, guid: b35bdd8e9f8e75b45aba5c946c47f528, type: 3}
-  m_Name: readGriglia
+  m_Name: read
   m_EditorClassIdentifier: 
   gOName: Griglia
   properties:
@@ -21,15 +21,26 @@ MonoBehaviour:
   - Griglia
   - Griglia^player^y
   - Griglia
+  - Griglia^player^val
+  - Griglia
+  - Griglia^player^ch
+  - Griglia
+  - Griglia^direzionePrecedente
+  - Griglia
+  - Griglia^direzionePrecedente
+  - Griglia^direzione
+  - Griglia
+  - Griglia^direzione
   propertiesNames: []
   gOType: 
-  configurationName: readGriglia
+  configurationName: read
   advancedConf:
   - objType: Cella, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
     toSave:
     - x
     - y
     - val
+    - ch
     propertyName: Griglia^mappa
     name: Cella
     propertyType: LIST
@@ -37,5 +48,13 @@ MonoBehaviour:
   - Key: Griglia^player^x
     Value: 0
   - Key: Griglia^player^y
+    Value: 0
+  - Key: Griglia^player^val
+    Value: 0
+  - Key: Griglia^player^ch
+    Value: 0
+  - Key: Griglia^direzionePrecedente
+    Value: 0
+  - Key: Griglia^direzione
     Value: 0
   specificValuePerProperty: []
