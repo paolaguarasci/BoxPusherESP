@@ -100,7 +100,7 @@ nuoveDistanza(Dir,Dist) :- scatola, nuovaPosizioneScatola(Dir, X1,Y1), targetPiu
 
 % Ottimizzazione
 % Per non fare avanti e dietro o sopra e sotto
-:- penultima(X), ultimaDir(Y), vado(X), X != Y.
+:- penultimaDir(X), ultimaDir(Y), vado(X), X != Y.
 % Se scatta l'angolo, prendilo --- no, si blocca all'inizio, non serve, trova un modo differente.
 % :~ not angolo. [1@3]
 
