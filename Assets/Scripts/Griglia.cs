@@ -27,9 +27,15 @@ public class Griglia : MonoBehaviour {
     Cella nextCellaPlayer = getCella (x, y);
     if (nextCellaPlayer.ch == '$') {
       setCella (x, y, ' ', 0);
-      setCella (x + deltaX, y + deltaY, '$', 4);
+      Cella quellaAncoraDopo = getCella (x + deltaX, y + deltaY);
+      if (quellaAncoraDopo.ch == '.') {
+        setCella (x + deltaX, y + deltaY, '#', 2);
+      } else {
+        setCella (x + deltaX, y + deltaY, '$', 4);
+      }
     }
   }
+
   public void setCella (int x, int y, char ch, int val) {
     foreach (Cella c in mappa) {
       if (c.x == x && c.y == y) {
