@@ -10,10 +10,10 @@ public class Player : MonoBehaviour {
 
     public int xPrec = -1;
     public int yPrec = -1;
-    private int _dp = -1;
+    private int _dp = 10;
     public int DP { get { return _dp; } set { _dp = value; } }
 
-    private int _d = -1;
+    private int _d = 10; 
     public int D { get { return _d; } set { _d = value; } }
     public void Start () {
         x = (int) transform.position.x;

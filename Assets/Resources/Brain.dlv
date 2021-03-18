@@ -51,14 +51,14 @@ nuovaPosizionePlayer(D, X, Y1) :- vado(D), D=4, player(X, Y, ID), Y1 = Y-1.
 :- nuovaPosizionePlayer(D, X,Y), muro(X,Y,_).
 
 
-nuoveDistanza(Dir,Dist) :- not scatola, nuovaPosizionePlayer(Dir, X1,Y1), scatolaPiuVicina(ID), box(X2, Y2, ID), Dist = X1-X2+Y1-Y2, X1 >= X2, Y1 >= Y2.
-nuoveDistanza(Dir,Dist) :- not scatola, nuovaPosizionePlayer(Dir, X1,Y1), scatolaPiuVicina(ID), box(X2, Y2, ID), Dist = X2-X1+Y1-Y2, X1 < X2, Y1 >= Y2.
-nuoveDistanza(Dir,Dist) :- not scatola, nuovaPosizionePlayer(Dir, X1,Y1), scatolaPiuVicina(ID), box(X2, Y2, ID), Dist = X1-X2+Y2-Y1, X1 >= X2, Y1 < Y2.
-nuoveDistanza(Dir,Dist) :- not scatola, nuovaPosizionePlayer(Dir, X1,Y1), scatolaPiuVicina(ID), box(X2, Y2, ID), Dist = X2-X1+Y2-Y1, X1 < X2, Y1 < Y2. 
+nuovaDistanza(Dir,Dist) :- not scatola, nuovaPosizionePlayer(Dir, X1,Y1), scatolaPiuVicina(ID), box(X2, Y2, ID), Dist = X1-X2+Y1-Y2, X1 >= X2, Y1 >= Y2.
+nuovaDistanza(Dir,Dist) :- not scatola, nuovaPosizionePlayer(Dir, X1,Y1), scatolaPiuVicina(ID), box(X2, Y2, ID), Dist = X2-X1+Y1-Y2, X1 < X2, Y1 >= Y2.
+nuovaDistanza(Dir,Dist) :- not scatola, nuovaPosizionePlayer(Dir, X1,Y1), scatolaPiuVicina(ID), box(X2, Y2, ID), Dist = X1-X2+Y2-Y1, X1 >= X2, Y1 < Y2.
+nuovaDistanza(Dir,Dist) :- not scatola, nuovaPosizionePlayer(Dir, X1,Y1), scatolaPiuVicina(ID), box(X2, Y2, ID), Dist = X2-X1+Y2-Y1, X1 < X2, Y1 < Y2. 
 :- nuovaDistanza(Dir, Dist), distanzaScatole(Id, DistP), Dist > DistP, not scatola.
 
-:~ vado(0).  [1@2]
-:~ nuoveDistanza(Dir, Dist). [Dist@1]
+% :~ vado(0).  [1@1]
+:~ nuovaDistanza(Dir, Dist). [Dist@1]
 
 scatolaTrovata(D) :- player(_,_,NP), box(_,_,NB), NP=NB-1, D=1.
 scatolaTrovata(D) :- player(_,_,NP), box(_,_,NB), NP=NB+1, D=2. 
@@ -92,18 +92,18 @@ nuovaPosizioneScatola(D, X, Y1) :- vado(D), D=3, box(X, Y, ID), Y1 = Y+1, scatol
 nuovaPosizioneScatola(D, X, Y1) :- vado(D), D=4, box(X, Y, ID), Y1 = Y-1, scatolaPiuVicina(ID).
 :- nuovaPosizioneScatola(D, X,Y), muro(X,Y,_).
 
-nuoveDistanza(Dir,Dist) :- scatola, nuovaPosizioneScatola(Dir, X1,Y1), targetPiuVicino(ID), targetLibero(X2, Y2, ID), Dist = X1-X2+Y1-Y2, X1 >= X2, Y1 >= Y2.
-nuoveDistanza(Dir,Dist) :- scatola, nuovaPosizioneScatola(Dir, X1,Y1), targetPiuVicino(ID), targetLibero(X2, Y2, ID), Dist = X2-X1+Y1-Y2, X1 < X2, Y1 >= Y2.
-nuoveDistanza(Dir,Dist) :- scatola, nuovaPosizioneScatola(Dir, X1,Y1), targetPiuVicino(ID), targetLibero(X2, Y2, ID), Dist = X1-X2+Y2-Y1, X1 >= X2, Y1 < Y2.
-nuoveDistanza(Dir,Dist) :- scatola, nuovaPosizioneScatola(Dir, X1,Y1), targetPiuVicino(ID), targetLibero(X2, Y2, ID), Dist = X2-X1+Y2-Y1, X1 < X2, Y1 < Y2. 
+nuovaDistanza(Dir,Dist) :- scatola, nuovaPosizioneScatola(Dir, X1,Y1), targetPiuVicino(ID), targetLibero(X2, Y2, ID), Dist = X1-X2+Y1-Y2, X1 >= X2, Y1 >= Y2.
+nuovaDistanza(Dir,Dist) :- scatola, nuovaPosizioneScatola(Dir, X1,Y1), targetPiuVicino(ID), targetLibero(X2, Y2, ID), Dist = X2-X1+Y1-Y2, X1 < X2, Y1 >= Y2.
+nuovaDistanza(Dir,Dist) :- scatola, nuovaPosizioneScatola(Dir, X1,Y1), targetPiuVicino(ID), targetLibero(X2, Y2, ID), Dist = X1-X2+Y2-Y1, X1 >= X2, Y1 < Y2.
+nuovaDistanza(Dir,Dist) :- scatola, nuovaPosizioneScatola(Dir, X1,Y1), targetPiuVicino(ID), targetLibero(X2, Y2, ID), Dist = X2-X1+Y2-Y1, X1 < X2, Y1 < Y2. 
 :- nuovaDistanza(Dir, Dist), distanzaTarget(Id, DistP), Dist > DistP, scatola.
 
 % Ottimizzazione
 % Per non fare avanti e dietro o sopra e sotto
 :- penultimaDir(X), ultimaDir(Y), vado(X), X != Y.
 % Se scatta l'angolo, prendilo --- no, si blocca all'inizio, non serve, trova un modo differente.
-% :~ not angolo. [1@3]
-
+% :~ not angolo. [1@1]
+:~ vado(X), Y = 5-X. [Y@4]
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% OUTPUT (Direzione da prendere) %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

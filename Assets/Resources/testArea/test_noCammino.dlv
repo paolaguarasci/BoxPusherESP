@@ -2,13 +2,14 @@
 %% Input
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-random(random(randomDirection(dir(1)))).
-read(griglia(griglia(player(x(9))))).
-read(griglia(griglia(player(y(8))))).
+
+random(random(randomDirection(dir(4)))).
+read(griglia(griglia(player(x(10))))).
+read(griglia(griglia(player(y(10))))).
 read(griglia(griglia(player(val(0))))).
 read(griglia(griglia(player(ch(" "))))).
-read(griglia(griglia(direzionePrecedente(-1)))).
-read(griglia(griglia(direzione(3)))).
+read(griglia(griglia(direzionePrecedente(4)))).
+read(griglia(griglia(direzione(1)))).
 read(griglia(griglia(mappa(0,cella(x(5)))))).
 read(griglia(griglia(mappa(1,cella(x(6)))))).
 read(griglia(griglia(mappa(2,cella(x(7)))))).
@@ -184,14 +185,14 @@ read(griglia(griglia(mappa(9,cella(val(2)))))).
 read(griglia(griglia(mappa(10,cella(val(0)))))).
 read(griglia(griglia(mappa(11,cella(val(0)))))).
 read(griglia(griglia(mappa(12,cella(val(0)))))).
-read(griglia(griglia(mappa(13,cella(val(5)))))).
+read(griglia(griglia(mappa(13,cella(val(0)))))).
 read(griglia(griglia(mappa(14,cella(val(0)))))).
 read(griglia(griglia(mappa(15,cella(val(0)))))).
 read(griglia(griglia(mappa(16,cella(val(0)))))).
 read(griglia(griglia(mappa(17,cella(val(2)))))).
 read(griglia(griglia(mappa(18,cella(val(2)))))).
 read(griglia(griglia(mappa(19,cella(val(0)))))).
-read(griglia(griglia(mappa(20,cella(val(0)))))).
+read(griglia(griglia(mappa(20,cella(val(5)))))).
 read(griglia(griglia(mappa(21,cella(val(0)))))).
 read(griglia(griglia(mappa(22,cella(val(0)))))).
 read(griglia(griglia(mappa(23,cella(val(0)))))).
@@ -202,10 +203,10 @@ read(griglia(griglia(mappa(27,cella(val(2)))))).
 read(griglia(griglia(mappa(28,cella(val(0)))))).
 read(griglia(griglia(mappa(29,cella(val(0)))))).
 read(griglia(griglia(mappa(30,cella(val(0)))))).
-read(griglia(griglia(mappa(31,cella(val(4)))))).
+read(griglia(griglia(mappa(31,cella(val(0)))))).
 read(griglia(griglia(mappa(32,cella(val(0)))))).
 read(griglia(griglia(mappa(33,cella(val(0)))))).
-read(griglia(griglia(mappa(34,cella(val(6)))))).
+read(griglia(griglia(mappa(34,cella(val(0)))))).
 read(griglia(griglia(mappa(35,cella(val(2)))))).
 read(griglia(griglia(mappa(36,cella(val(2)))))).
 read(griglia(griglia(mappa(37,cella(val(0)))))).
@@ -221,7 +222,7 @@ read(griglia(griglia(mappa(46,cella(val(0)))))).
 read(griglia(griglia(mappa(47,cella(val(0)))))).
 read(griglia(griglia(mappa(48,cella(val(0)))))).
 read(griglia(griglia(mappa(49,cella(val(0)))))).
-read(griglia(griglia(mappa(50,cella(val(0)))))).
+read(griglia(griglia(mappa(50,cella(val(4)))))).
 read(griglia(griglia(mappa(51,cella(val(0)))))).
 read(griglia(griglia(mappa(52,cella(val(0)))))).
 read(griglia(griglia(mappa(53,cella(val(2)))))).
@@ -241,7 +242,7 @@ read(griglia(griglia(mappa(66,cella(val(0)))))).
 read(griglia(griglia(mappa(67,cella(val(0)))))).
 read(griglia(griglia(mappa(68,cella(val(0)))))).
 read(griglia(griglia(mappa(69,cella(val(0)))))).
-read(griglia(griglia(mappa(70,cella(val(0)))))).
+read(griglia(griglia(mappa(70,cella(val(6)))))).
 read(griglia(griglia(mappa(71,cella(val(2)))))).
 read(griglia(griglia(mappa(72,cella(val(2)))))).
 read(griglia(griglia(mappa(73,cella(val(2)))))).
@@ -265,14 +266,14 @@ read(griglia(griglia(mappa(9,cella(ch("#")))))).
 read(griglia(griglia(mappa(10,cella(ch(" ")))))).
 read(griglia(griglia(mappa(11,cella(ch(" ")))))).
 read(griglia(griglia(mappa(12,cella(ch(" ")))))).
-read(griglia(griglia(mappa(13,cella(ch("@")))))).
+read(griglia(griglia(mappa(13,cella(ch(" ")))))).
 read(griglia(griglia(mappa(14,cella(ch(" ")))))).
 read(griglia(griglia(mappa(15,cella(ch(" ")))))).
 read(griglia(griglia(mappa(16,cella(ch(" ")))))).
 read(griglia(griglia(mappa(17,cella(ch("#")))))).
 read(griglia(griglia(mappa(18,cella(ch("#")))))).
 read(griglia(griglia(mappa(19,cella(ch(" ")))))).
-read(griglia(griglia(mappa(20,cella(ch(" ")))))).
+read(griglia(griglia(mappa(20,cella(ch("@")))))).
 read(griglia(griglia(mappa(21,cella(ch(" ")))))).
 read(griglia(griglia(mappa(22,cella(ch(" ")))))).
 read(griglia(griglia(mappa(23,cella(ch(" ")))))).
@@ -283,10 +284,10 @@ read(griglia(griglia(mappa(27,cella(ch("#")))))).
 read(griglia(griglia(mappa(28,cella(ch(" ")))))).
 read(griglia(griglia(mappa(29,cella(ch(" ")))))).
 read(griglia(griglia(mappa(30,cella(ch(" ")))))).
-read(griglia(griglia(mappa(31,cella(ch("$")))))).
+read(griglia(griglia(mappa(31,cella(ch(" ")))))).
 read(griglia(griglia(mappa(32,cella(ch(" ")))))).
 read(griglia(griglia(mappa(33,cella(ch(" ")))))).
-read(griglia(griglia(mappa(34,cella(ch(".")))))).
+read(griglia(griglia(mappa(34,cella(ch(" ")))))).
 read(griglia(griglia(mappa(35,cella(ch("#")))))).
 read(griglia(griglia(mappa(36,cella(ch("#")))))).
 read(griglia(griglia(mappa(37,cella(ch(" ")))))).
@@ -302,7 +303,7 @@ read(griglia(griglia(mappa(46,cella(ch(" ")))))).
 read(griglia(griglia(mappa(47,cella(ch(" ")))))).
 read(griglia(griglia(mappa(48,cella(ch(" ")))))).
 read(griglia(griglia(mappa(49,cella(ch(" ")))))).
-read(griglia(griglia(mappa(50,cella(ch(" ")))))).
+read(griglia(griglia(mappa(50,cella(ch("$")))))).
 read(griglia(griglia(mappa(51,cella(ch(" ")))))).
 read(griglia(griglia(mappa(52,cella(ch(" ")))))).
 read(griglia(griglia(mappa(53,cella(ch("#")))))).
@@ -322,7 +323,7 @@ read(griglia(griglia(mappa(66,cella(ch(" ")))))).
 read(griglia(griglia(mappa(67,cella(ch(" ")))))).
 read(griglia(griglia(mappa(68,cella(ch(" ")))))).
 read(griglia(griglia(mappa(69,cella(ch(" ")))))).
-read(griglia(griglia(mappa(70,cella(ch(" ")))))).
+read(griglia(griglia(mappa(70,cella(ch(".")))))).
 read(griglia(griglia(mappa(71,cella(ch("#")))))).
 read(griglia(griglia(mappa(72,cella(ch("#")))))).
 read(griglia(griglia(mappa(73,cella(ch("#")))))).
@@ -335,7 +336,7 @@ read(griglia(griglia(mappa(79,cella(ch("#")))))).
 read(griglia(griglia(mappa(80,cella(ch("#")))))).
 
 
-direction(0,10,10). %% fermo
+% direction(0,10,10). %% fermo
 direction(1,20,10). %% sopra
 direction(2,0,10).  %% sotto
 direction(3,10,20). %% destra
@@ -387,14 +388,14 @@ nuovaPosizionePlayer(D, X, Y1) :- vado(D), D=4, player(X, Y, ID), Y1 = Y-1.
 :- nuovaPosizionePlayer(D, X,Y), muro(X,Y,_).
 
 
-nuoveDistanza(Dir,Dist) :- not scatola, nuovaPosizionePlayer(Dir, X1,Y1), scatolaPiuVicina(ID), box(X2, Y2, ID), Dist = X1-X2+Y1-Y2, X1 >= X2, Y1 >= Y2.
-nuoveDistanza(Dir,Dist) :- not scatola, nuovaPosizionePlayer(Dir, X1,Y1), scatolaPiuVicina(ID), box(X2, Y2, ID), Dist = X2-X1+Y1-Y2, X1 < X2, Y1 >= Y2.
-nuoveDistanza(Dir,Dist) :- not scatola, nuovaPosizionePlayer(Dir, X1,Y1), scatolaPiuVicina(ID), box(X2, Y2, ID), Dist = X1-X2+Y2-Y1, X1 >= X2, Y1 < Y2.
-nuoveDistanza(Dir,Dist) :- not scatola, nuovaPosizionePlayer(Dir, X1,Y1), scatolaPiuVicina(ID), box(X2, Y2, ID), Dist = X2-X1+Y2-Y1, X1 < X2, Y1 < Y2. 
+nuovaDistanza(Dir,Dist) :- not scatola, nuovaPosizionePlayer(Dir, X1,Y1), scatolaPiuVicina(ID), box(X2, Y2, ID), Dist = X1-X2+Y1-Y2, X1 >= X2, Y1 >= Y2.
+nuovaDistanza(Dir,Dist) :- not scatola, nuovaPosizionePlayer(Dir, X1,Y1), scatolaPiuVicina(ID), box(X2, Y2, ID), Dist = X2-X1+Y1-Y2, X1 < X2, Y1 >= Y2.
+nuovaDistanza(Dir,Dist) :- not scatola, nuovaPosizionePlayer(Dir, X1,Y1), scatolaPiuVicina(ID), box(X2, Y2, ID), Dist = X1-X2+Y2-Y1, X1 >= X2, Y1 < Y2.
+nuovaDistanza(Dir,Dist) :- not scatola, nuovaPosizionePlayer(Dir, X1,Y1), scatolaPiuVicina(ID), box(X2, Y2, ID), Dist = X2-X1+Y2-Y1, X1 < X2, Y1 < Y2. 
 :- nuovaDistanza(Dir, Dist), distanzaScatole(Id, DistP), Dist > DistP, not scatola.
 
-:~ vado(0).  [1@2]
-:~ nuoveDistanza(Dir, Dist). [Dist@1]
+% :~ vado(0).  [1@2]
+:~ nuovaDistanza(Dir, Dist). [Dist@1]
 
 scatolaTrovata(D) :- player(_,_,NP), box(_,_,NB), NP=NB-1, D=1.
 scatolaTrovata(D) :- player(_,_,NP), box(_,_,NB), NP=NB+1, D=2. 
@@ -428,18 +429,18 @@ nuovaPosizioneScatola(D, X, Y1) :- vado(D), D=3, box(X, Y, ID), Y1 = Y+1, scatol
 nuovaPosizioneScatola(D, X, Y1) :- vado(D), D=4, box(X, Y, ID), Y1 = Y-1, scatolaPiuVicina(ID).
 :- nuovaPosizioneScatola(D, X,Y), muro(X,Y,_).
 
-nuoveDistanza(Dir,Dist) :- scatola, nuovaPosizioneScatola(Dir, X1,Y1), targetPiuVicino(ID), targetLibero(X2, Y2, ID), Dist = X1-X2+Y1-Y2, X1 >= X2, Y1 >= Y2.
-nuoveDistanza(Dir,Dist) :- scatola, nuovaPosizioneScatola(Dir, X1,Y1), targetPiuVicino(ID), targetLibero(X2, Y2, ID), Dist = X2-X1+Y1-Y2, X1 < X2, Y1 >= Y2.
-nuoveDistanza(Dir,Dist) :- scatola, nuovaPosizioneScatola(Dir, X1,Y1), targetPiuVicino(ID), targetLibero(X2, Y2, ID), Dist = X1-X2+Y2-Y1, X1 >= X2, Y1 < Y2.
-nuoveDistanza(Dir,Dist) :- scatola, nuovaPosizioneScatola(Dir, X1,Y1), targetPiuVicino(ID), targetLibero(X2, Y2, ID), Dist = X2-X1+Y2-Y1, X1 < X2, Y1 < Y2. 
+nuovaDistanza(Dir,Dist) :- scatola, nuovaPosizioneScatola(Dir, X1,Y1), targetPiuVicino(ID), targetLibero(X2, Y2, ID), Dist = X1-X2+Y1-Y2, X1 >= X2, Y1 >= Y2.
+nuovaDistanza(Dir,Dist) :- scatola, nuovaPosizioneScatola(Dir, X1,Y1), targetPiuVicino(ID), targetLibero(X2, Y2, ID), Dist = X2-X1+Y1-Y2, X1 < X2, Y1 >= Y2.
+nuovaDistanza(Dir,Dist) :- scatola, nuovaPosizioneScatola(Dir, X1,Y1), targetPiuVicino(ID), targetLibero(X2, Y2, ID), Dist = X1-X2+Y2-Y1, X1 >= X2, Y1 < Y2.
+nuovaDistanza(Dir,Dist) :- scatola, nuovaPosizioneScatola(Dir, X1,Y1), targetPiuVicino(ID), targetLibero(X2, Y2, ID), Dist = X2-X1+Y2-Y1, X1 < X2, Y1 < Y2. 
 :- nuovaDistanza(Dir, Dist), distanzaTarget(Id, DistP), Dist > DistP, scatola.
 
 % Ottimizzazione
 % Per non fare avanti e dietro o sopra e sotto
-:- penultima(X), ultimaDir(Y), vado(X), X != Y.
+:- penultimaDir(X), ultimaDir(Y), vado(X), X != Y.
 % Se scatta l'angolo, prendilo --- no, si blocca all'inizio, non serve, trova un modo differente.
 % :~ not angolo. [1@3]
-
+:~vado(X). [X@4]
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% OUTPUT (Direzione da prendere) %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -466,4 +467,3 @@ setOnActuator(scrivo(gameManager(gameManager(x(X))))) :- direzioneDaPrendere(D),
 setOnActuator(scrivo(gameManager(gameManager(y(Y))))) :- direzioneDaPrendere(D), direction(D,X,Y), not angolo.
 setOnActuator(scrivo(gameManager(gameManager(x2(X))))) :- X = -1, not angolo.
 setOnActuator(scrivo(gameManager(gameManager(y2(Y))))) :- Y = -1, not angolo.
-
