@@ -1,118 +1,233 @@
 
+%random(random(randomDirection(dir(X)))).
+%read(griglia(griglia(player(x(X))))).
+%read(griglia(griglia(player(y(X))))).
+%read(griglia(griglia(player(val(X))))).
+%read(griglia(griglia(player(ch(X))))).
+%read(griglia(griglia(direzionePrecedente(X)))).
+%read(griglia(griglia(direzione(X)))).
+%read(griglia(griglia(mappa(X,cella(x(V)))))).
+%read(griglia(griglia(mappa(X,cella(y(V)))))).
+%read(griglia(griglia(mappa(X,cella(val(V)))))).
+%read(griglia(griglia(mappa(X,cella(ch(V)))))).
+
+
+%    1   |    3
+%  4 0 3 |  2 0 1
+%    2   |    4
+
+% direction(0,10,10).   %% fermo    -- Fermo
+% direction(1,20,10). %% Sopra    -- Destra
+% direction(2,0,10).  %% Sotto    -- Sinistra
+% direction(3,10,20). %% Destra   -- Sopra
+% direction(4,10,0).  %% Sinitra  -- Sotto
+
+% celle(X, Y, I, C) :- read(griglia(griglia(mappa(I,cella(x(X)))))), read(griglia(griglia(mappa(I,cella(y(Y)))))), read(griglia(griglia(mappa(I,cella(val(C)))))).
+% player(X, Y, I) :- read(griglia(griglia(mappa(I,cella(x(X)))))), read(griglia(griglia(mappa(I,cella(y(Y)))))), read(griglia(griglia(player(x(X))))), read(griglia(griglia(player(y(Y))))).
+% target(X, Y, I) :- celle(X, Y, I, C), C = 3.
+% box(X, Y, I)  :- celle(X, Y, I, C), C = 4.
+% targetLiberi(X,Y, I) :- target(X,Y,I), not box(X,Y,I).
+% stop(N, I) :- targetLiberi(_, _, I), N = 1.
+
+% mifermo :- stop(1, I), player(_, _, PI), PI = I, D = 0. %% stop
+% direzioneDaPrendere(D) :- readDir(random(randomDirection(direction(D)))), not mifermo.
+% direzioneDaPrendere(0) :- mifermo.
+
+% direzioneDaPrendere(1). % Sopra - in effetti va a destra
+% direzioneDaPrendere(2). % Sotto - in effetti va a sinistra
+% direzioneDaPrendere(3). % Destra - in effetti va sopra
+% direzioneDaPrendere(4). % Sinistra - in effetti va sotto
+
+% scatolaTrovata(D) :- player(_,_,NP), box(_,_,NB), NP=NB-1, D=1.
+% scatolaTrovata(D) :- player(_,_,NP), box(_,_,NB), NP=NB+1, D=2. 
+% scatolaTrovata(D) :- player(_,_,NP), box(_,_,NB), NP=NB-9, D=3. 
+% scatolaTrovata(D) :- player(_,_,NP), box(_,_,NB), NP=NB+9, D=4. 
+
+% giroAttorno(M1,M2) :- player(_,_,NP), scatolaTrovata(D), direzioneDaPrendere(D1), D = 3, D1 = 2, M1=1, M2=3.
+% angolo :- giroAttorno(M1, M2).
+
+% setOnActuator(scrivoDir(gameManager(gameManager(x(X))))) :- giroAttorno(D,D2), direction(D,X,Y), angolo.
+% setOnActuator(scrivoDir(gameManager(gameManager(y(Y))))) :- giroAttorno(D,D2), direction(D,X,Y), angolo.
+% setOnActuator(scrivoDir(gameManager(gameManager(x2(X))))) :- angolo, giroAttorno(D1, D2), direction(D2,X,Y).
+% setOnActuator(scrivoDir(gameManager(gameManager(y2(Y))))) :- angolo, giroAttorno(D1, D2), direction(D2,X,Y).
+
+% setOnActuator(scrivoDir(gameManager(gameManager(x(X))))) :- direzioneDaPrendere(D), direction(D,X,Y), not angolo.
+% setOnActuator(scrivoDir(gameManager(gameManager(y(Y))))) :- direzioneDaPrendere(D), direction(D,X,Y), not angolo.
+% setOnActuator(scrivoDir(gameManager(gameManager(x2(X))))) :- not angolo, X = -1.
+% setOnActuator(scrivoDir(gameManager(gameManager(y2(Y))))) :- not angolo, Y = -1.
+
+
+
+
+
+
+%%  ' '   0   Spazio 
+%%  ';'   1   Nuovo Livello
+%%  '#'   2   Muro
+%%  '_'   3   Muro v2
+%%  '$'   4   Scatola
+%%  '@'   5   Personaggio
+%%  '.'   6   Target
+
+%   1   |    3
+% 4 0 3 |  2 0 1
+%   2   |    4
+
+% direction(0,10,10).   %% fermo    -- Fermo
+% direction(1,20,10). %% Sopra    -- Destra
+% direction(2,0,10).  %% Sotto    -- Sinistra
+% direction(3,10,20). %% Destra   -- Sopra
+% direction(4,10,0).  %% Sinitra  -- Sotto
+
+% celle(X, Y, I, C) :- read(griglia(griglia(mappa(I,cella(x(X)))))), read(griglia(griglia(mappa(I,cella(y(Y)))))), read(griglia(griglia(mappa(I,cella(val(C)))))).
+% player(X, Y, I) :- read(griglia(griglia(mappa(I,cella(x(X)))))), read(griglia(griglia(mappa(I,cella(y(Y)))))), read(griglia(griglia(player(x(X))))), read(griglia(griglia(player(y(Y))))).
+% target(X, Y, I) :- celle(X, Y, I, C), C = 3.
+% box(X, Y, I)  :- celle(X, Y, I, C), C = 4.
+% targetLiberi(X,Y, I) :- target(X,Y,I), not box(X,Y,I).
+% stop(I) :- targetLiberi(_, _, I).
+
+% mifermo :- player(_, _, PI), PI = I, stop(I).
+% direzioneDaPrendere(0) :- mifermo.
+% direzioneDaPrendere(D) :- readDir(random(randomDirection(direction(D)))), not mifermo.
+
+% dir(1). % Sopra - in effetti va a destra
+% dir(2). % Sotto - in effetti va a sinistra
+% dir(3). % Destra - in effetti va sopra
+% dir(4). % Sinistra - in effetti va sotto
+
+% direzioneDaPrendere(D) :- dir(D), not mifermo.
+
+% setOnActuator(scrivoDir(gameManager(gameManager(x(X))))) :- direzioneDaPrendere(D), direction(D,X,Y).
+% setOnActuator(scrivoDir(gameManager(gameManager(y(Y))))) :- direzioneDaPrendere(D), direction(D,X,Y).
 direction(0,10,10). %% fermo
 direction(1,20,10). %% sopra
 direction(2,0,10).  %% sotto
 direction(3,10,20). %% destra
 direction(4,10,0).  %% sinitra
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% Parsing input
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 %% MAPPA %%
 celle(X, Y, I, C) :- read(griglia(griglia(mappa(I,cella(x(X)))))), read(griglia(griglia(mappa(I,cella(y(Y)))))), read(griglia(griglia(mappa(I,cella(val(C)))))).
+nodo(I) :- read(griglia(griglia(mappa(I,cella(x(A)))))).
+
+arc(I1, I2) :- nodo(I1), nodo(I2), celle(X1,Y1,I1,C1), celle(X2,Y2,I2,C2), I1 != I2, Y1 = Y2, X2 = X1 + 1, C1 != 2, C2 != 2.   
+arc(I1, I2) :- nodo(I1), nodo(I2), celle(X1,Y1,I1,C1), celle(X2,Y2,I2,C2), I1 != I2, Y1 = Y2, X2 = X1 - 1, C1 != 2, C2 != 2.   
+arc(I1, I2) :- nodo(I1), nodo(I2), celle(X1,Y1,I1,C1), celle(X2,Y2,I2,C2), I1 != I2, Y1 = Y2 + 1, X2 = X1, C1 != 2, C2 != 2.   
+arc(I1, I2) :- nodo(I1), nodo(I2), celle(X1,Y1,I1,C1), celle(X2,Y2,I2,C2), I1 != I2, Y1 = Y2 - 1, X2 = X1, C1 != 2, C2 != 2.   
+
 muro(X, Y, I) :- celle(X, Y, I, C), C = 2.
 libero(X, Y, I) :- celle(X, Y, I, C), C = 0.
 
 %% PLAYER %%
 player(X, Y, I) :- read(griglia(griglia(mappa(I,cella(x(X)))))), read(griglia(griglia(mappa(I,cella(y(Y)))))), read(griglia(griglia(player(x(X))))), read(griglia(griglia(player(y(Y))))).
 
-% %% TARGET %%
-target(X, Y, I) :- celle(X, Y, I, C), C = 6.
-
-%% Trovo le scatole.
+%% BOX %%
 box(X, Y, I)  :- celle(X, Y, I, C), C = 4.
+
+%% TARGET %%
+target(X, Y, I) :- celle(X, Y, I, C), C = 6.
 
 %% Ultima e penultima direzione
 penultimaDir(X) :- read(griglia(griglia(direzionePrecedente(X)))).
 ultimaDir(X) :- read(griglia(griglia(direzione(X)))).
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% Elaborazione
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-%% Calcolo le distanze (manhattan) con ogni scatola %%
-distanzaScatole(ID, Distanza) :- player(X1, Y1, IP), box(X2, Y2, ID), Distanza = X1-X2+Y1-Y2, X1 >= X2, Y1 >= Y2.
-distanzaScatole(ID, Distanza) :- player(X1, Y1, IP), box(X2, Y2, ID), Distanza = X2-X1+Y1-Y2, X1 < X2, Y1 >= Y2.
-distanzaScatole(ID, Distanza) :- player(X1, Y1, IP), box(X2, Y2, ID), Distanza = X1-X2+Y2-Y1, X1 >= X2, Y1 < Y2.
-distanzaScatole(ID, Distanza) :- player(X1, Y1, IP), box(X2, Y2, ID), Distanza = X2-X1+Y2-Y1, X1 < X2, Y1 < Y2. 
+%% CAMMINO Fase 1 (cerco una scatola) %%
+startS(I) :- player(_, _, I), not st.
+stopS(I) :- box(_, _, I), not st. %% Va bene perche' per ora la scatola e' una sola. Poi va trovato un modo per selezionarne una (la piu vicina?)
 
-scatolaPiuVicina(ID) :- distanzaScatole(ID, DM), #min{Distanza: distanzaScatole(ID, Distanza)} = DM.
-
-vado(N) | nonVado(N) :- direction(N, DX, DY).
-:- vado(N1), vado(N2), N1 != N2. % Ci evitiamo un count?
-v :- vado(N).
-:- not v.
-
-nuovaPosizionePlayer(D, X1, Y) :- vado(D), D=1, player(X, Y, ID), X1 = X+1.
-nuovaPosizionePlayer(D, X1, Y) :- vado(D), D=2, player(X, Y, ID), X1 = X-1.
-nuovaPosizionePlayer(D, X, Y1) :- vado(D), D=3, player(X, Y, ID), Y1 = Y+1.
-nuovaPosizionePlayer(D, X, Y1) :- vado(D), D=4, player(X, Y, ID), Y1 = Y-1.
-:- nuovaPosizionePlayer(D, X,Y), muro(X,Y,_).
-
-
-nuovaDistanza(Dir,Dist) :- not scatola, nuovaPosizionePlayer(Dir, X1,Y1), scatolaPiuVicina(ID), box(X2, Y2, ID), Dist = X1-X2+Y1-Y2, X1 >= X2, Y1 >= Y2.
-nuovaDistanza(Dir,Dist) :- not scatola, nuovaPosizionePlayer(Dir, X1,Y1), scatolaPiuVicina(ID), box(X2, Y2, ID), Dist = X2-X1+Y1-Y2, X1 < X2, Y1 >= Y2.
-nuovaDistanza(Dir,Dist) :- not scatola, nuovaPosizionePlayer(Dir, X1,Y1), scatolaPiuVicina(ID), box(X2, Y2, ID), Dist = X1-X2+Y2-Y1, X1 >= X2, Y1 < Y2.
-nuovaDistanza(Dir,Dist) :- not scatola, nuovaPosizionePlayer(Dir, X1,Y1), scatolaPiuVicina(ID), box(X2, Y2, ID), Dist = X2-X1+Y2-Y1, X1 < X2, Y1 < Y2. 
-:- nuovaDistanza(Dir, Dist), distanzaScatole(Id, DistP), Dist > DistP, not scatola.
-
-% :~ vado(0).  [1@1]
-:~ nuovaDistanza(Dir, Dist). [Dist@1]
+inPath(X,Y) | outPath(X,Y) :- arc(X,Y), not st.
+:- inPath(X,Y), inPath(X,Y1), Y != Y1, not st.
+:- inPath(X,Y), inPath(X1,Y), X != X1, not st. 
+reachedS(X) :- startS(X), not st.
+reachedS(X) :- reachedS(Y), inPath(Y,X), not st.
+:- stopS(X), not reachedS(X), not st.
+:- stopS(X), inPath(X,Y), not st.
 
 scatolaTrovata(D) :- player(_,_,NP), box(_,_,NB), NP=NB-1, D=1.
 scatolaTrovata(D) :- player(_,_,NP), box(_,_,NB), NP=NB+1, D=2. 
 scatolaTrovata(D) :- player(_,_,NP), box(_,_,NB), NP=NB-9, D=3. 
-scatolaTrovata(D) :- player(_,_,NP), box(_,_,NB), NP=NB+9, D=4.
-scatola :- scatolaTrovata(D).
+scatolaTrovata(D) :- player(_,_,NP), box(_,_,NB), NP=NB+9, D=4. 
+st :- scatolaTrovata(D).
 
-giroAttorno(M1,M2) :- player(_,_,NP), scatolaTrovata(D), vado(D1), D = 3, D1 = 2, M1=1, M2=3.
-giroAttorno(M1,M2) :- player(_,_,NP), scatolaTrovata(D), vado(D1), D = 3, D1 = 1, M1=2, M2=3.
-giroAttorno(M1,M2) :- player(_,_,NP), scatolaTrovata(D), vado(D1), D = 4, D1 = 2, M1=1, M2=4.
-giroAttorno(M1,M2) :- player(_,_,NP), scatolaTrovata(D), vado(D1), D = 4, D1 = 1, M1=2, M2=4.
+%% Non mollo piu la scatola
+% :- ???
 
-giroAttorno(M1,M2) :- player(_,_,NP), scatolaTrovata(D), vado(D1), D = 1, D1 = 3, M1=4, M2=1.
-giroAttorno(M1,M2) :- player(_,_,NP), scatolaTrovata(D), vado(D1), D = 1, D1 = 4, M1=3, M2=1.
-giroAttorno(M1,M2) :- player(_,_,NP), scatolaTrovata(D), vado(D1), D = 2, D1 = 3, M1=4, M2=2.
-giroAttorno(M1,M2) :- player(_,_,NP), scatolaTrovata(D), vado(D1), D = 2, D1 = 4, M1=3, M2=2.
+%% CAMMINO Fase 2 (cerco un target) %%
+startT(I) :- box(_, _, I), st.
+stopT(I) :- target(_, _, I), st. %% Va bene perche' per ora il target e' uno solo. Poi va trovato un modo per selezionarne uno (il piu vicino?)
+
+inPath(X,Y) | outPath(X,Y) :- arc(X,Y), st.
+:- inPath(X,Y), inPath(X,Y1), Y != Y1, st.
+:- inPath(X,Y), inPath(X1,Y), X != X1, st. 
+reachedT(X) :- startT(X), st.
+reachedT(X) :- reachedT(Y), inPath(Y,X), st.
+:- stopT(X), not reachedT(X), st.
+:- stopT(X), inPath(X,Y), st.
+
+giroAttorno(M1,M2) :- player(_,_,NP), scatolaTrovata(D), direzioneDaPrendere(D1), D = 3, D1 = 2, M1=1, M2=3.
+giroAttorno(M1,M2) :- player(_,_,NP), scatolaTrovata(D), direzioneDaPrendere(D1), D = 3, D1 = 1, M1=2, M2=3.
+
+giroAttorno(M1,M2) :- player(_,_,NP), scatolaTrovata(D), direzioneDaPrendere(D1), D = 4, D1 = 2, M1=1, M2=4.
+giroAttorno(M1,M2) :- player(_,_,NP), scatolaTrovata(D), direzioneDaPrendere(D1), D = 4, D1 = 1, M1=2, M2=4.
+
+giroAttorno(M1,M2) :- player(_,_,NP), scatolaTrovata(D), direzioneDaPrendere(D1), D = 1, D1 = 3, M1=4, M2=1.
+giroAttorno(M1,M2) :- player(_,_,NP), scatolaTrovata(D), direzioneDaPrendere(D1), D = 1, D1 = 4, M1=3, M2=1.
+
+giroAttorno(M1,M2) :- player(_,_,NP), scatolaTrovata(D), direzioneDaPrendere(D1), D = 2, D1 = 3, M1=4, M2=2.
+giroAttorno(M1,M2) :- player(_,_,NP), scatolaTrovata(D), direzioneDaPrendere(D1), D = 2, D1 = 4, M1=3, M2=2.
 
 angolo :- giroAttorno(M1, M2).
 
-targetLibero(X, Y, I) :- target(X, Y, I), not box(X, Y, I).
+%% Evitiamo i muri
+% :- reached(X), muro(X).
 
-distanzaTarget(ID, Distanza) :- scatolaPiuVicina(IB), box(X1, Y1, IB), targetLibero(X2, Y2, ID), Distanza = X1-X2+Y1-Y2, X1 >= X2, Y1 >= Y2.
-distanzaTarget(ID, Distanza) :- scatolaPiuVicina(IB), box(X1, Y1, IB), targetLibero(X2, Y2, ID), Distanza = X2-X1+Y1-Y2, X1 < X2, Y1 >= Y2.
-distanzaTarget(ID, Distanza) :- scatolaPiuVicina(IB), box(X1, Y1, IB), targetLibero(X2, Y2, ID), Distanza = X1-X2+Y2-Y1, X1 >= X2, Y1 < Y2.
-distanzaTarget(ID, Distanza) :- scatolaPiuVicina(IB), box(X1, Y1, IB), targetLibero(X2, Y2, ID), Distanza = X2-X1+Y2-Y1, X1 < X2, Y1 < Y2. 
-targetPiuVicino(ID) :- distanzaTarget(ID, DM), #min{Distanza: distanzaTarget(ID, Distanza)} = DM.
+direzionePrecedente(X) :- read(griglia(griglia(direzione(X)))).
 
-nuovaPosizioneScatola(D, X1, Y) :- vado(D), D=1, box(X, Y, ID), X1 = X+1, scatolaPiuVicina(ID).
-nuovaPosizioneScatola(D, X1, Y) :- vado(D), D=2, box(X, Y, ID), X1 = X-1, scatolaPiuVicina(ID).
-nuovaPosizioneScatola(D, X, Y1) :- vado(D), D=3, box(X, Y, ID), Y1 = Y+1, scatolaPiuVicina(ID).
-nuovaPosizioneScatola(D, X, Y1) :- vado(D), D=4, box(X, Y, ID), Y1 = Y-1, scatolaPiuVicina(ID).
-:- nuovaPosizioneScatola(D, X,Y), muro(X,Y,_).
+%% OTTIMIZZAZIONE %%
+% Pago la lunghezza del cammino a lv 1
+:~ #count{X,Y: inPath(X,Y)} = C. [C@2]
+:- #count{X,Y: inPath(X,Y)} = C, C > 9.
 
-nuovaDistanza(Dir,Dist) :- scatola, nuovaPosizioneScatola(Dir, X1,Y1), targetPiuVicino(ID), targetLibero(X2, Y2, ID), Dist = X1-X2+Y1-Y2, X1 >= X2, Y1 >= Y2.
-nuovaDistanza(Dir,Dist) :- scatola, nuovaPosizioneScatola(Dir, X1,Y1), targetPiuVicino(ID), targetLibero(X2, Y2, ID), Dist = X2-X1+Y1-Y2, X1 < X2, Y1 >= Y2.
-nuovaDistanza(Dir,Dist) :- scatola, nuovaPosizioneScatola(Dir, X1,Y1), targetPiuVicino(ID), targetLibero(X2, Y2, ID), Dist = X1-X2+Y2-Y1, X1 >= X2, Y1 < Y2.
-nuovaDistanza(Dir,Dist) :- scatola, nuovaPosizioneScatola(Dir, X1,Y1), targetPiuVicino(ID), targetLibero(X2, Y2, ID), Dist = X2-X1+Y2-Y1, X1 < X2, Y1 < Y2. 
-:- nuovaDistanza(Dir, Dist), distanzaTarget(Id, DistP), Dist > DistP, scatola.
+% Numero di mosse 
 
-% Ottimizzazione
-% Per non fare avanti e dietro o sopra e sotto
 :- penultimaDir(X), ultimaDir(Y), vado(X), X != Y.
-% Se scatta l'angolo, prendilo --- no, si blocca all'inizio, non serve, trova un modo differente.
-% :~ not angolo. [1@1]
-:~ vado(X), Y = 5-X. [Y@4]
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% OUTPUT (Direzione da prendere) %%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-direzioneDaPrendere(D) :- vado(D).
 
-% direzioneDaPrendere(D) :- box(_, _, PI), inPath(PI, SI), SI=PI+1, D=1, st. %% Destra
-% direzioneDaPrendere(D) :- box(_, _, PI), inPath(PI, SI), SI=PI-1, D=2, st. %% Sinistra
-% direzioneDaPrendere(D) :- box(_, _, PI), inPath(PI, SI), SI=PI-9, D=4, st. %% Sopra
-% direzioneDaPrendere(D) :- box(_, _, PI), inPath(PI, SI), SI=PI+9, D=3, st. %% Sotto
+% Tra cammini di uguale lunghezza preferisco quello che mi fa muovere verso sinistra e in alto
+:~ inPath(A,B), start(A), D = A-B, A > B. [D@1]
+:~ inPath(A,B), start(A), D = B-A, A < B. [D@1]
+% NO NON HA SENSO !!! - Preferisco la direzione minore (e' solo un modo di discriminare)
+% :~ direzioneDaPrendere(D). [D@4]
+% Preferisco le strade diritte
+% :~ angolo. [1@8]
+% Pago sui cambi di direzione
+% :~ direzioneDaPrendere(D), direzionePrecedente(DP), DP != D. [1@6] 
+% Preferisco i cammini con scatole in mezzo
+% :~ inPath(X, Y), celle(A, B, Y, C), C != 4. [1@3]
+:- box(X,Y,ID), st, muro(X+1,Y,_), muro(X,Y-1,_).
+
+
+%% Conto i cambi di direzione nel cammino
+% cambiDirezione(A,C) :- inPath(A,B), inPath(B,C), C = A + 8.
+% cambiDirezione(A,C) :- inPath(A,B), inPath(B,C), C = A - 8.
+% cambiDirezione(A,C) :- inPath(A,B), inPath(B,C), C = A - 10.
+% cambiDirezione(A,C) :- inPath(A,B), inPath(B,C), C = A + 10.
+% numCambiDir(N) :- #count{A,C: cambiDirezione(A,C)} = N.
+% :~ numCambiDir(N). [N@5]
+
+%% OUTPUT (Direzione da prendere) %%
+%    1   |    3
+%  4 0 3 |  2 0 1
+%    2   |    4
+
+direzioneDaPrendere(D) :- player(_, _, PI), inPath(PI, SI), SI=PI+1, D=1, not st. %% Destra
+direzioneDaPrendere(D) :- player(_, _, PI), inPath(PI, SI), SI=PI-1, D=2, not st. %% Sinistra
+direzioneDaPrendere(D) :- player(_, _, PI), inPath(PI, SI), SI=PI-9, D=4, not st. %% Sopra
+direzioneDaPrendere(D) :- player(_, _, PI), inPath(PI, SI), SI=PI+9, D=3, not st. %% Sotto
+
+direzioneDaPrendere(D) :- box(_, _, PI), inPath(PI, SI), SI=PI+1, D=1, st. %% Destra
+direzioneDaPrendere(D) :- box(_, _, PI), inPath(PI, SI), SI=PI-1, D=2, st. %% Sinistra
+direzioneDaPrendere(D) :- box(_, _, PI), inPath(PI, SI), SI=PI-9, D=4, st. %% Sopra
+direzioneDaPrendere(D) :- box(_, _, PI), inPath(PI, SI), SI=PI+9, D=3, st. %% Sotto
 
 playerNextPos(X, Y) :- player(XP, YP, P), inPath(P, I), celle(X, Y, I, C).
 
