@@ -1,104 +1,3 @@
-
-%random(random(randomDirection(dir(X)))).
-%read(griglia(griglia(player(x(X))))).
-%read(griglia(griglia(player(y(X))))).
-%read(griglia(griglia(player(val(X))))).
-%read(griglia(griglia(player(ch(X))))).
-%read(griglia(griglia(direzionePrecedente(X)))).
-%read(griglia(griglia(direzione(X)))).
-%read(griglia(griglia(mappa(X,cella(x(V)))))).
-%read(griglia(griglia(mappa(X,cella(y(V)))))).
-%read(griglia(griglia(mappa(X,cella(val(V)))))).
-%read(griglia(griglia(mappa(X,cella(ch(V)))))).
-
-
-%    1   |    3
-%  4 0 3 |  2 0 1
-%    2   |    4
-
-% direction(0,10,10).   %% fermo    -- Fermo
-% direction(1,20,10). %% Sopra    -- Destra
-% direction(2,0,10).  %% Sotto    -- Sinistra
-% direction(3,10,20). %% Destra   -- Sopra
-% direction(4,10,0).  %% Sinitra  -- Sotto
-
-% celle(X, Y, I, C) :- read(griglia(griglia(mappa(I,cella(x(X)))))), read(griglia(griglia(mappa(I,cella(y(Y)))))), read(griglia(griglia(mappa(I,cella(val(C)))))).
-% player(X, Y, I) :- read(griglia(griglia(mappa(I,cella(x(X)))))), read(griglia(griglia(mappa(I,cella(y(Y)))))), read(griglia(griglia(player(x(X))))), read(griglia(griglia(player(y(Y))))).
-% target(X, Y, I) :- celle(X, Y, I, C), C = 3.
-% box(X, Y, I)  :- celle(X, Y, I, C), C = 4.
-% targetLiberi(X,Y, I) :- target(X,Y,I), not box(X,Y,I).
-% stop(N, I) :- targetLiberi(_, _, I), N = 1.
-
-% mifermo :- stop(1, I), player(_, _, PI), PI = I, D = 0. %% stop
-% direzioneDaPrendere(D) :- readDir(random(randomDirection(direction(D)))), not mifermo.
-% direzioneDaPrendere(0) :- mifermo.
-
-% direzioneDaPrendere(1). % Sopra - in effetti va a destra
-% direzioneDaPrendere(2). % Sotto - in effetti va a sinistra
-% direzioneDaPrendere(3). % Destra - in effetti va sopra
-% direzioneDaPrendere(4). % Sinistra - in effetti va sotto
-
-% scatolaTrovata(D) :- player(_,_,NP), box(_,_,NB), NP=NB-1, D=1.
-% scatolaTrovata(D) :- player(_,_,NP), box(_,_,NB), NP=NB+1, D=2. 
-% scatolaTrovata(D) :- player(_,_,NP), box(_,_,NB), NP=NB-9, D=3. 
-% scatolaTrovata(D) :- player(_,_,NP), box(_,_,NB), NP=NB+9, D=4. 
-
-% giroAttorno(M1,M2) :- player(_,_,NP), scatolaTrovata(D), direzioneDaPrendere(D1), D = 3, D1 = 2, M1=1, M2=3.
-% angolo :- giroAttorno(M1, M2).
-
-% setOnActuator(scrivoDir(gameManager(gameManager(x(X))))) :- giroAttorno(D,D2), direction(D,X,Y), angolo.
-% setOnActuator(scrivoDir(gameManager(gameManager(y(Y))))) :- giroAttorno(D,D2), direction(D,X,Y), angolo.
-% setOnActuator(scrivoDir(gameManager(gameManager(x2(X))))) :- angolo, giroAttorno(D1, D2), direction(D2,X,Y).
-% setOnActuator(scrivoDir(gameManager(gameManager(y2(Y))))) :- angolo, giroAttorno(D1, D2), direction(D2,X,Y).
-
-% setOnActuator(scrivoDir(gameManager(gameManager(x(X))))) :- direzioneDaPrendere(D), direction(D,X,Y), not angolo.
-% setOnActuator(scrivoDir(gameManager(gameManager(y(Y))))) :- direzioneDaPrendere(D), direction(D,X,Y), not angolo.
-% setOnActuator(scrivoDir(gameManager(gameManager(x2(X))))) :- not angolo, X = -1.
-% setOnActuator(scrivoDir(gameManager(gameManager(y2(Y))))) :- not angolo, Y = -1.
-
-
-
-
-
-
-%%  ' '   0   Spazio 
-%%  ';'   1   Nuovo Livello
-%%  '#'   2   Muro
-%%  '_'   3   Muro v2
-%%  '$'   4   Scatola
-%%  '@'   5   Personaggio
-%%  '.'   6   Target
-
-%   1   |    3
-% 4 0 3 |  2 0 1
-%   2   |    4
-
-% direction(0,10,10).   %% fermo    -- Fermo
-% direction(1,20,10). %% Sopra    -- Destra
-% direction(2,0,10).  %% Sotto    -- Sinistra
-% direction(3,10,20). %% Destra   -- Sopra
-% direction(4,10,0).  %% Sinitra  -- Sotto
-
-% celle(X, Y, I, C) :- read(griglia(griglia(mappa(I,cella(x(X)))))), read(griglia(griglia(mappa(I,cella(y(Y)))))), read(griglia(griglia(mappa(I,cella(val(C)))))).
-% player(X, Y, I) :- read(griglia(griglia(mappa(I,cella(x(X)))))), read(griglia(griglia(mappa(I,cella(y(Y)))))), read(griglia(griglia(player(x(X))))), read(griglia(griglia(player(y(Y))))).
-% target(X, Y, I) :- celle(X, Y, I, C), C = 3.
-% box(X, Y, I)  :- celle(X, Y, I, C), C = 4.
-% targetLiberi(X,Y, I) :- target(X,Y,I), not box(X,Y,I).
-% stop(I) :- targetLiberi(_, _, I).
-
-% mifermo :- player(_, _, PI), PI = I, stop(I).
-% direzioneDaPrendere(0) :- mifermo.
-% direzioneDaPrendere(D) :- readDir(random(randomDirection(direction(D)))), not mifermo.
-
-% dir(1). % Sopra - in effetti va a destra
-% dir(2). % Sotto - in effetti va a sinistra
-% dir(3). % Destra - in effetti va sopra
-% dir(4). % Sinistra - in effetti va sotto
-
-% direzioneDaPrendere(D) :- dir(D), not mifermo.
-
-% setOnActuator(scrivoDir(gameManager(gameManager(x(X))))) :- direzioneDaPrendere(D), direction(D,X,Y).
-% setOnActuator(scrivoDir(gameManager(gameManager(y(Y))))) :- direzioneDaPrendere(D), direction(D,X,Y).
 direction(0,10,10). %% fermo
 direction(1,20,10). %% sopra
 direction(2,0,10).  %% sotto
@@ -166,15 +65,21 @@ reachedT(X) :- reachedT(Y), inPath(Y,X), st.
 
 giroAttorno(M1,M2) :- player(_,_,NP), scatolaTrovata(D), direzioneDaPrendere(D1), D = 3, D1 = 2, M1=1, M2=3.
 giroAttorno(M1,M2) :- player(_,_,NP), scatolaTrovata(D), direzioneDaPrendere(D1), D = 3, D1 = 1, M1=2, M2=3.
-
 giroAttorno(M1,M2) :- player(_,_,NP), scatolaTrovata(D), direzioneDaPrendere(D1), D = 4, D1 = 2, M1=1, M2=4.
 giroAttorno(M1,M2) :- player(_,_,NP), scatolaTrovata(D), direzioneDaPrendere(D1), D = 4, D1 = 1, M1=2, M2=4.
 
 giroAttorno(M1,M2) :- player(_,_,NP), scatolaTrovata(D), direzioneDaPrendere(D1), D = 1, D1 = 3, M1=4, M2=1.
 giroAttorno(M1,M2) :- player(_,_,NP), scatolaTrovata(D), direzioneDaPrendere(D1), D = 1, D1 = 4, M1=3, M2=1.
-
 giroAttorno(M1,M2) :- player(_,_,NP), scatolaTrovata(D), direzioneDaPrendere(D1), D = 2, D1 = 3, M1=4, M2=2.
 giroAttorno(M1,M2) :- player(_,_,NP), scatolaTrovata(D), direzioneDaPrendere(D1), D = 2, D1 = 4, M1=3, M2=2.
+
+% 180 Gradi - sopra,sotto
+giroAttorno(M1,M2) :- player(_,_,NP), scatolaTrovata(D), direzioneDaPrendere(D1), D = 4, D1 = 3, M1=1, M2=2.
+giroAttorno(M1,M2) :- player(_,_,NP), scatolaTrovata(D), direzioneDaPrendere(D1), D = 3, D1 = 4, M1=1, M2=2.
+
+% 180 Gradi - destra,sinistra
+giroAttorno(M1,M2) :- player(_,_,NP), scatolaTrovata(D), direzioneDaPrendere(D1), D = 2, D1 = 1, M1=3, M2=4.
+giroAttorno(M1,M2) :- player(_,_,NP), scatolaTrovata(D), direzioneDaPrendere(D1), D = 1, D1 = 2, M1=3, M2=4.
 
 angolo :- giroAttorno(M1, M2).
 
@@ -205,6 +110,8 @@ direzionePrecedente(X) :- read(griglia(griglia(direzione(X)))).
 % :~ inPath(X, Y), celle(A, B, Y, C), C != 4. [1@3]
 :- box(X,Y,ID), st, muro(X+1,Y,_), muro(X,Y-1,_).
 
+% Non e' possibile che inPath ci siano cammini senza "spazio di manovra"
+:- inPath(X, X+1), inPath(X+1, X-9), muro(_,_,X+2), muro(_,_,X+9).
 
 %% Conto i cambi di direzione nel cammino
 % cambiDirezione(A,C) :- inPath(A,B), inPath(B,C), C = A + 8.
