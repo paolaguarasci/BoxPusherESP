@@ -61,7 +61,7 @@
         "**/*.sln": true,
         "Assets/Plugins": true,
         "Assets/Prefabs": true,
-        "Assets/Resources": true,
+        "Assets/Resources": false,
         "Assets/Scenes": true,
         "Assets/Texture": true,
         ".history": true,
