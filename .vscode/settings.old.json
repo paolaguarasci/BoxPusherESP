@@ -3,7 +3,7 @@
     {
         "**/.DS_Store":true,
         "**/.git":true,
-        "**/.gitignore":false,
+        "**/.gitignore":true,
         "**/.gitmodules":true,
         "**/*.booproj":true,
         "**/*.pidb":true,
@@ -50,21 +50,6 @@
         "obj/":true,
         "Obj/":true,
         "ProjectSettings/":true,
-        "temp/":true,
-        "Temp/":true,
-        "coverage/": true,
-        "lib/": true,
-        "Logs/": true,
-        "Packages/": true,
-        "UserSettings/": true,                
-        "**/*.csproj": true,
-        "**/*.sln": true,
-        "Assets/Plugins": true,
-        "Assets/Prefabs": true,
-        "Assets/Resources": true,
-        "Assets/Scenes": true,
-        "Assets/Texture": true,
-        ".history": true,
-        "**/.gitattributes": true
+        "temp/":true
     }
 }
