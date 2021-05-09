@@ -15,7 +15,7 @@ public class LevelBuilder : MonoBehaviour {
         public Level m_Level;
         public Griglia g;
 
-        Dictionary<char, int> allCharacters = new Dictionary<char, int> () { { ' ', 0 }, { ';', 1 }, { '#', 2 }, { '_', 3 }, { '$', 4 }, { '@', 5 }, { '.', 3 },
+        Dictionary<char, int> allCharacters = new Dictionary<char, int> () { { ' ', 0 }, { ';', 1 }, { '#', 2 }, { '_', 3 }, { '$', 4 }, { '@', 5 }, { '.', 6 },
         };
 
         public void Start () {
