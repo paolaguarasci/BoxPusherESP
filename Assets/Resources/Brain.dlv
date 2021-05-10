@@ -84,7 +84,7 @@ giroAttorno(M1,M2) :- player(_,_,NP), scatolaTrovata(D), direzioneDaPrendere(D1)
 angolo :- giroAttorno(M1, M2).
 
 %% Evitiamo i muri
-% :- reached(X), muro(X).
+:- reached(X), muro(X).
 
 direzionePrecedente(X) :- read(griglia(griglia(direzione(X)))).
 
@@ -98,8 +98,11 @@ direzionePrecedente(X) :- read(griglia(griglia(direzione(X)))).
 :- penultimaDir(X), ultimaDir(Y), vado(X), X != Y.
 
 % Tra cammini di uguale lunghezza preferisco quello che mi fa muovere verso sinistra e in alto
-:~ inPath(A,B), start(A), D = A-B, A > B. [D@1]
-:~ inPath(A,B), start(A), D = B-A, A < B. [D@1]
+:~ inPath(A,B), startT(A), D = A-B, A > B. [D@1]
+:~ inPath(A,B), startT(A), D = B-A, A < B. [D@1]
+:~ inPath(A,B), startS(A), D = A-B, A > B. [D@1]
+:~ inPath(A,B), startS(A), D = B-A, A < B. [D@1]
+
 % NO NON HA SENSO !!! - Preferisco la direzione minore (e' solo un modo di discriminare)
 % :~ direzioneDaPrendere(D). [D@4]
 % Preferisco le strade diritte

@@ -9,13 +9,14 @@ public class Trigger : ScriptableObject {
   public Player player;
   public GameManager gameManager;
 
-  public int direzione = -1;
+  public int direzione = 0;
 
   public void Awake () {
     griglia = FindObjectOfType<Griglia> ();
     player = FindObjectOfType<Player> ();
     gameManager = FindObjectOfType<GameManager> ();
     direzione = griglia.direzione;
+    Debug.Log("AWAKE TRIGGER " + direzione);
   }
 
   public Boolean prontoAMuovere () {

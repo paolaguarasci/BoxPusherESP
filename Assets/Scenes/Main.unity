@@ -638,8 +638,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: acb3ea2787035864882bc98d802457f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  direzionePrecedente: -1
-  direzione: -1
+  direzionePrecedente: 10
+  direzione: 10
 --- !u!4 &733930962
 Transform:
   m_ObjectHideFlags: 0
@@ -1110,9 +1110,9 @@ MonoBehaviour:
   enableBrain: 1
   maintainFactFile: 1
   updateSensorsRepeteadly: 1
-  sensorsUpdateFrequencyMS: 500
+  sensorsUpdateFrequencyMS: 1000
   updateSensorsOnTrigger: 0
   triggerClassPath: .\Assets\Scripts\Trigger.cs
   updateSensorsOn: 
-  executeReasonerOn: When Sensors are ready
-  applyActuatorsCondition: Always
+  executeReasonerOn: prontoAMuovere
+  applyActuatorsCondition: prontoAMuovere

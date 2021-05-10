@@ -6,8 +6,10 @@ public class Griglia : MonoBehaviour {
   public List<Cella> mappa = new List<Cella> ();
   public Cella player = new Cella ();
 
-  public int direzionePrecedente = 0;
-  public int direzione = 0;
+  public int direzionePrecedente = 456;
+  public int direzione = 123;
+
+
 
   public void muoviPlayer (Vector2 dir) {
     player.x += (int) dir.x;
@@ -51,7 +53,7 @@ public class Griglia : MonoBehaviour {
       if (c.x == x && c.y == y) {
         return c;
       }
-    }
+    } 
     return null;
   }
   public void aggiornaDir (Vector2 dir) {

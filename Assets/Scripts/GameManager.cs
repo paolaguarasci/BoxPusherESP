@@ -47,11 +47,11 @@ public class GameManager : MonoBehaviour {
 
     void Update () {
         // Vector2 moveInput = new Vector2 (Input.GetAxisRaw ("Horizontal"), Input.GetAxisRaw ("Vertical"));
-        float xf = (X - 10) / 10.0f;
-        float yf = (Y - 10) / 10.0f;
+        float xf = (X - 10) / 10.0f; // deve dare 0 quando l'input e' 10
+        float yf = (Y - 10) / 10.0f; // deve dare 0 quando l'input e' 10
         Vector2 moveInput = new Vector2 (xf, yf);
-        float xf2 = (X2 - 10) / 10.0f;
-        float yf2 = (Y2 - 10) / 10.0f;
+        float xf2 = (X2 - 10) / 10.0f; 
+        float yf2 = (Y2 - 10) / 10.0f; 
         Vector2 moveInput2 = new Vector2 (xf2, yf2);
         moveInput.Normalize ();
         moveInput2.Normalize ();
